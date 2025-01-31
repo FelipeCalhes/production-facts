@@ -1,0 +1,144 @@
+_schema-version: 3.3.0
+ID: production-facts
+description: A simple CAP project.
+version: 1.0.0
+modules:
+- name: production-facts-srv
+  type: nodejs
+  path: gen/srv
+  requires:
+  - name: production-facts-destination
+  - name: production-facts-db
+  - name: production-facts-connectivity
+  - name: production-facts-auth
+  provides:
+  - name: srv-api
+    properties:
+      srv-url: ${default-url}
+  parameters:
+    buildpack: nodejs_buildpack
+    readiness-health-check-http-endpoint: /health
+    readiness-health-check-type: http
+  build-parameters:
+    builder: npm
+- name: production-facts-db-deployer
+  type: hdb
+  path: gen/db
+  requires:
+  - name: production-facts-db
+  parameters:
+    buildpack: nodejs_buildpack
+- name: production-facts-deployer
+  type: com.sap.application.content
+  path: .
+  requires:
+  - name: production-facts-repo-host
+    parameters:
+      content-target: true
+  build-parameters:
+    build-result: resources
+    requires:
+    - artifacts:
+      - creditstrokes.zip
+      name: creditstrokes
+      target-path: resources/
+- name: creditstrokes
+  type: html5
+  path: app/credit-strokes
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+- name: production-facts-app-content
+  type: com.sap.application.content
+  build-parameters:
+    no-source: true
+  requires:
+    - name: production-facts-repo-host
+      parameters:
+        service-key:
+          name: production-facts-repo-host-key
+    - name: production-facts-auth
+      parameters:
+        service-key:
+          name: production-facts-auth-key
+    - name: production-facts-destination
+      parameters:
+        content-target: true
+  parameters:
+    content:
+      instance:
+        existing_destinations_policy: update
+        destinations:
+          - Name: production-facts-repo-host
+            ServiceInstanceName: production-facts-html5-srv
+            ServiceKeyName: production-facts-repo-host-key
+            sap.cloud.service: production.facts
+          - Name: production-facts-auth
+            Authentication: OAuth2UserTokenExchange
+            ServiceInstanceName: production-facts-auth
+            ServiceKeyName: production-facts-repo-auth-key
+            sap.cloud.service: production.facts 
+resources:
+- name: production-facts-destination
+  type: org.cloudfoundry.managed-service
+  requires:
+    - name: srv-api
+  parameters:
+    config:
+      HTML5Runtime_enabled: true
+      init_data:
+        instance:
+          destinations:
+          - Authentication: NoAuthentication
+            Name: ui5
+            ProxyType: Internet
+            Type: HTTP
+            URL: https://ui5.sap.com
+          - Authentication: NoAuthentication
+            Name: production-facts
+            ProxyType: Internet
+            HTML5.ForwardAuthToken: true
+            HTML5.DynamicDestination: true
+            Type: HTTP
+            URL: https://~{srv-api/srv-url}
+          existing_destinations_policy: update
+    service: destination
+    service-plan: lite
+- name: production-facts-db
+  type: com.sap.xs.hdi-container
+  parameters:
+    service: hana
+    service-plan: hdi-shared
+- name: production-facts-connectivity
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: connectivity
+    service-plan: lite
+- name: production-facts-auth
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      tenant-mode: dedicated
+      xsappname: production-facts-${org}-${space}
+    path: ./xs-security.json
+    service: xsuaa
+    service-plan: application
+- name: production-facts-repo-host
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-name: production-facts-html5-srv
+    service-plan: app-host
+parameters:
+  deploy_mode: html5-repo
+  enable-parallel-deployments: true
+build-parameters:
+  before-all:
+  - builder: custom
+    commands:
+    - npm ci
+    - npx cds build --production
