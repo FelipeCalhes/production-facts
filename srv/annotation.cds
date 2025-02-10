@@ -71,11 +71,17 @@ annotate srv.MESStrokes with @odata.draft.enabled {
     changeReason;
 
     @title: 'Data da Última Mudança'
+    @readonly
     lastChangeDate;
 
     @title: 'Hora da Última Mudança'
+    @readonly
     lastChangeTime;
 
     @title: 'Alterado Por'
+    @readonly
     lastChangeBy;
+
 }
+
+annotate srv.MESStrokes with @odata.draft.bypass;

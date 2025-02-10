@@ -14,11 +14,14 @@ modules:
   provides:
   - name: srv-api
     properties:
-      srv-url: ${default-url}
+      # srv-url: ${default-url}
+      srv-url: ${routes/0/route}
   parameters:
     buildpack: nodejs_buildpack
     readiness-health-check-http-endpoint: /health
     readiness-health-check-type: http
+    routes:
+        - route: ${org}-${space}-production-facts.${default-domain}
   build-parameters:
     builder: npm
 - name: production-facts-db-deployer
@@ -99,7 +102,7 @@ resources:
             Type: HTTP
             URL: https://ui5.sap.com
           - Authentication: NoAuthentication
-            Name: production-facts
+            Name: credit-strokes
             ProxyType: Internet
             HTML5.ForwardAuthToken: true
             HTML5.DynamicDestination: true

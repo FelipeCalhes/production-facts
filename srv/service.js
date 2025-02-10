@@ -58,6 +58,8 @@ module.exports = cds.service.impl(async function() {
                     line._changeReason = el
                 }
             })
+
+            //line.lastChangedBy = 'Lucas'
         })
         
         return list
@@ -78,4 +80,51 @@ module.exports = cds.service.impl(async function() {
         const con = await cds.connect.to('searchHelp')
         return con.run(req.query)
     });
+
+    this.before('UPDATE', [MESStrokes, 'ProductionFactsService.MESStrokes.drafts'], async (list, req) => {
+        //usuário sap
+        const user = new cds.User.Privileged
+    //list.data.lastChangeBy = user.id;
+        list.data.lastChangeBy = list.user.id;
+
+        //data atual AAAA-MM-DD
+        const currentDate = new Date();
+        const formattedDate = `${currentDate.getFullYear()}-${String(currentDate.getMonth() + 1).padStart(2, '0')}-${String(currentDate.getDate()).padStart(2, '0')}`;
+        list.data.lastChangeDate = formattedDate;
+
+        // hora atual formatada em horas:minutos:segundos
+        const formattedTime = `${String(currentDate.getHours()).padStart(2, '0')}:${String(currentDate.getMinutes()).padStart(2, '0')}:${String(currentDate.getSeconds()).padStart(2, '0')}`;
+        list.data.lastChangeTime = formattedTime;
+
+        if (list.data.changeReason == null || list.data.changeReason.length == 0) {
+            list.reject(400, 'Informe o motivo da alteração');
+        }
+
+        if (1 == 2)
+            console.log('teste')
+        //const sapUser = req.user.id
+        
+        
+    });
+
+    // this.on('CREATE', 'YourEntity', async (req) => {
+    //     const { data } = req;
+
+    //     // usuário sap
+    //     const user = new cds.User.Privileged();
+    //     data.createdBy = user.id;
+
+    //     // data atual formatada em ano-mês-dia
+    //     const currentDate = new Date();
+    //     const formattedDate = `${currentDate.getFullYear()}-${String(currentDate.getMonth() + 1).padStart(2, '0')}-${String(currentDate.getDate()).padStart(2, '0')}`;
+    //     data.creationDate = formattedDate;
+
+    //     // hora atual formatada em horas:minutos:segundos
+    //     const formattedTime = `${String(currentDate.getHours()).padStart(2, '0')}:${String(currentDate.getMinutes()).padStart(2, '0')}:${String(currentDate.getSeconds()).padStart(2, '0')}`;
+    //     data.creationTime = formattedTime;
+
+    //     // Adicione a lógica para criar o registro aqui
+    //     const result = await INSERT.into('YourEntity').entries(data);
+    //     return result;
+    // });
 });

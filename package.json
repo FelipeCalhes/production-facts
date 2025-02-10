@@ -6,13 +6,14 @@
   "license": "UNLICENSED",
   "private": true,
   "dependencies": {
-    "@sap/cds": "^8",
-    "express": "^4",
-    "@sap/xssec": "^4",
     "@cap-js/hana": "^1",
-    "@sap/hana-client": "2.23.24",
+    "@sap-cloud-sdk/http-client": "3.25.0",
     "@sap-cloud-sdk/resilience": "3.25.0",
-    "@sap-cloud-sdk/http-client": "3.25.0"
+    "@sap/cds": "^8",
+    "@sap/hana-client": "2.23.24",
+    "@sap/xssec": "^4",
+    "express": "^4",
+    "soap": "^1.1.7"
   },
   "devDependencies": {
     "@cap-js/cds-types": "^0.7.0",

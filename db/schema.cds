@@ -20,9 +20,9 @@ entity MESStrokes {
     };
     lastChangeDate        : Date;
     lastChangeTime        : Time;
-    lastChangeBy          : String(12);
+    lastChangeBy          : String(250);
 }
-@cds.persistence.skip
+
 entity changeReasons {
     key id : String(1);
     description : String(40);
