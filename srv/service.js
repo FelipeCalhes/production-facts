@@ -1,7 +1,7 @@
 const cds = require('@sap/cds');
 
 module.exports = cds.service.impl(async function() {
-    const { MESStrokes, Plant, MRPPlanner, ChangeReasons } = this.entities;
+    const { MESStrokes, Plant, MRPPlanner, ChangeReasons, MESInterfaces, NetProductions } = this.entities;
     const changeReasons = [
         { id: 'A', description: 'Cálculo de OUT errado' },
         { id: 'B', description: 'Cálculo de strokes errado' },
@@ -100,31 +100,22 @@ module.exports = cds.service.impl(async function() {
             list.reject(400, 'Informe o motivo da alteração');
         }
 
-        if (1 == 2)
-            console.log('teste')
-        //const sapUser = req.user.id
+        // if (1 == 2)
+        //     console.log('teste')
+        // //const sapUser = req.user.id
         
         
     });
 
-    // this.on('CREATE', 'YourEntity', async (req) => {
-    //     const { data } = req;
+    //App2
+    this.before('UPDATE', [MESInterfaces, 'ProductionFactsService.MESInterfaces.drafts'], async (list, req) => {
+        
+        list.data.creditoOuDebito = list.data.creditoOuDebito.toUpperCase();
+        if (list.data.creditoOuDebito != 'H' && list.data.creditoOuDebito != 'S') {
+            list.reject(400, 'Digite H para crédito ou S para débito');
+        }
+        
+        
+    });
 
-    //     // usuário sap
-    //     const user = new cds.User.Privileged();
-    //     data.createdBy = user.id;
-
-    //     // data atual formatada em ano-mês-dia
-    //     const currentDate = new Date();
-    //     const formattedDate = `${currentDate.getFullYear()}-${String(currentDate.getMonth() + 1).padStart(2, '0')}-${String(currentDate.getDate()).padStart(2, '0')}`;
-    //     data.creationDate = formattedDate;
-
-    //     // hora atual formatada em horas:minutos:segundos
-    //     const formattedTime = `${String(currentDate.getHours()).padStart(2, '0')}:${String(currentDate.getMinutes()).padStart(2, '0')}:${String(currentDate.getSeconds()).padStart(2, '0')}`;
-    //     data.creationTime = formattedTime;
-
-    //     // Adicione a lógica para criar o registro aqui
-    //     const result = await INSERT.into('YourEntity').entries(data);
-    //     return result;
-    // });
 });

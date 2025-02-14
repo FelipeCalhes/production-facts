@@ -84,4 +84,132 @@ annotate srv.MESStrokes with @odata.draft.enabled {
 
 }
 
+annotate srv.MESInterfaces with @odata.draft.enabled {
+    @title: 'Mes Reason'
+    mesReason;
+
+    @title: 'Sap Reason'
+    sapReason;
+
+    @title: 'Fact.Resp'
+    factResp;
+
+    @title: 'H/S'
+    creditoOuDebito;
+}
+
+annotate srv.NetProductions with @odata.draft.enabled {
+    @title: 'Client'
+    mandante;
+
+    @title: 'Plant'
+    centro;
+
+    @title: 'MRP Planner'
+    planejadorMrp;
+
+    @title: 'Release Date'
+    dataLancamento;
+
+    @title: 'Work Center'
+    centroTrabalho;
+
+    @title: 'Material Number'
+    numeroMaterial;
+    
+    @title: 'Goal'
+    goal;
+
+    @title: 'Tendency'
+    tendency;
+
+    @title: 'Spoilage'
+    spoilage;
+
+    @title: 'HFI Generated'
+    hfiGenerated;
+
+    @title: 'Finished Good'
+    finishedGood;
+
+    @title: 'Average'
+    average;
+
+    @title: 'Total Production'
+    totalProduction;
+
+    @title: 'Production Cup Minster'
+    productionCupMinster;
+
+    @title: 'HFI Generated (%)'
+    hfiGeneratedPercentage;
+    
+    @title: 'HFI Released Plant'
+    hfiReleasedPlant;
+
+    @title: 'HFI Released Other Plant'
+    hfiReleasedOtherPlant;
+
+    @title: 'Scrap Plant No Respons'
+    scrapPlantNoRespons;
+
+    @title: 'Scrap Plant Respons'
+    scrapPlantRespons;
+
+    @title: 'Scrap Other Plant'
+    scrapOtherPlant;
+
+    @title: 'Total Released'
+    totalReleased;
+
+    @title: 'EOR Generation'
+    eorGeneration;
+
+    @title: 'EOR Released'
+    eorReleased;
+
+    @title: 'EOR HFI Generation'
+    eorHfiGeneration;
+
+    @title: 'EOR Balance'
+    eorBalance;
+    
+    @title: 'Plant Responsibility Report'
+    plantResponsibilityReport;
+
+    @title: 'Inventory'
+    inventory;
+
+    @title: 'Shell Ends Production'
+    shellEndsProduction;
+
+    @title: 'Shell Ends Scrap'
+    shellEndsScrap;
+
+    @title: 'Insertion Date'
+    insertionDate;
+
+    @title: 'Insertion Time'
+    insertionTime;
+
+    @title: 'Modification Date'
+    modificationDate;
+
+    @title: 'Modification Time'
+    modificationTime;
+
+    @title: 'Text'
+    text;
+
+    @title: 'HFI Generated No Resp'
+    hfiGeneratedNoResp;
+
+    @title: 'HFI Released Plant No Resp'
+    hfiReleasedPlantNoResp;
+
+    @title: 'MRP Group'
+    mrpGroup;
+}
+
 annotate srv.MESStrokes with @odata.draft.bypass;
+//annotate srv.MESInterfaces with @odata.draft.bypass;

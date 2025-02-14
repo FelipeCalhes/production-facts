@@ -14,14 +14,13 @@ modules:
   provides:
   - name: srv-api
     properties:
-      # srv-url: ${default-url}
       srv-url: ${routes/0/route}
   parameters:
     buildpack: nodejs_buildpack
     readiness-health-check-http-endpoint: /health
     readiness-health-check-type: http
     routes:
-        - route: ${org}-${space}-production-facts.${default-domain}
+    - route: ${org}-${space}-production-facts.${default-domain}
   build-parameters:
     builder: npm
 - name: production-facts-db-deployer
@@ -45,6 +44,14 @@ modules:
       - creditstrokes.zip
       name: creditstrokes
       target-path: resources/
+    - artifacts:
+      - mesinterfacemesinterface.zip
+      name: mes-interface
+      target-path: resources/
+    - artifacts:
+      - netproduction.zip
+      name: netproduction
+      target-path: resources/
 - name: creditstrokes
   type: html5
   path: app/credit-strokes
@@ -57,39 +64,57 @@ modules:
     supported-platforms: []
 - name: production-facts-app-content
   type: com.sap.application.content
-  build-parameters:
-    no-source: true
   requires:
-    - name: production-facts-repo-host
-      parameters:
-        service-key:
-          name: production-facts-repo-host-key
-    - name: production-facts-auth
-      parameters:
-        service-key:
-          name: production-facts-auth-key
-    - name: production-facts-destination
-      parameters:
-        content-target: true
+  - name: production-facts-repo-host
+    parameters:
+      service-key:
+        name: production-facts-repo-host-key
+  - name: production-facts-auth
+    parameters:
+      service-key:
+        name: production-facts-auth-key
+  - name: production-facts-destination
+    parameters:
+      content-target: true
   parameters:
     content:
       instance:
-        existing_destinations_policy: update
         destinations:
-          - Name: production-facts-repo-host
-            ServiceInstanceName: production-facts-html5-srv
-            ServiceKeyName: production-facts-repo-host-key
-            sap.cloud.service: production.facts
-          - Name: production-facts-auth
-            Authentication: OAuth2UserTokenExchange
-            ServiceInstanceName: production-facts-auth
-            ServiceKeyName: production-facts-repo-auth-key
-            sap.cloud.service: production.facts 
+        - Name: production-facts-repo-host
+          ServiceInstanceName: production-facts-html5-srv
+          ServiceKeyName: production-facts-repo-host-key
+          sap.cloud.service: production.facts
+        - Authentication: OAuth2UserTokenExchange
+          Name: production-facts-auth
+          ServiceInstanceName: production-facts-auth
+          ServiceKeyName: production-facts-repo-auth-key
+          sap.cloud.service: production.facts
+        existing_destinations_policy: update
+  build-parameters:
+    no-source: true
+- name: mes-interface
+  type: html5
+  path: app/mes-interface
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+- name: netproduction
+  type: html5
+  path: app/net-production
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
 resources:
 - name: production-facts-destination
   type: org.cloudfoundry.managed-service
-  requires:
-    - name: srv-api
   parameters:
     config:
       HTML5Runtime_enabled: true
@@ -102,15 +127,31 @@ resources:
             Type: HTTP
             URL: https://ui5.sap.com
           - Authentication: NoAuthentication
+            HTML5.DynamicDestination: true
+            HTML5.ForwardAuthToken: true
             Name: credit-strokes
             ProxyType: Internet
-            HTML5.ForwardAuthToken: true
+            Type: HTTP
+            URL: https://~{srv-api/srv-url}
+          - Authentication: NoAuthentication
             HTML5.DynamicDestination: true
+            HTML5.ForwardAuthToken: true
+            Name: mes-interface
+            ProxyType: Internet
+            Type: HTTP
+            URL: https://~{srv-api/srv-url}
+          - Authentication: NoAuthentication
+            HTML5.DynamicDestination: true
+            HTML5.ForwardAuthToken: true
+            Name: net-production
+            ProxyType: Internet
             Type: HTTP
             URL: https://~{srv-api/srv-url}
           existing_destinations_policy: update
     service: destination
     service-plan: lite
+  requires:
+  - name: srv-api
 - name: production-facts-db
   type: com.sap.xs.hdi-container
   parameters:

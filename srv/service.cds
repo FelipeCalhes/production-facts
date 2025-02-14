@@ -23,4 +23,80 @@ service ProductionFactsService {
     entity MRPPlanner as projection on sh.MRPPlanner;
 
     entity ChangeReasons as select from db.changeReasons;
+
+    //ap2
+    entity MESInterface as projection on db.MESInterfaces;
+
+    entity MESInterfaces as select from  MESInterface {
+        key mesReason,
+        sapReason,
+        factResp,
+        creditoOuDebito
+    }
+
+    entity NetProduction as projection on db.NetProductions;
+
+    // entity NetProductions as select from  NetProduction {
+    //     key mandante,
+    //     key centro,
+    //     key planejadorMrp,
+    //     dataLancamento,
+    //     key centroTrabalho,
+    //     key numeroMaterial,
+    //     goal,
+    //     tendency,
+    //     spoilage,
+    //     hfiGenerated,
+    //     finishedGood,
+    //     average,
+    //     totalProduction,
+    //     productionCupMinster,
+    //     hfiGeneratedPercentage,
+    //     hfiReleasedPlant,
+    //     hfiReleasedOtherPlant,
+    //     scrapPlantNoRespons,
+    //     scrapPlantRespons,
+    //     scrapOtherPlant,
+    //     totalReleased
+    // }
+
+    entity NetProductions as select from NetProduction {
+        //key mandante,
+        key centro,
+        key planejadorMrp,
+        dataLancamento,
+        key centroTrabalho,
+        key numeroMaterial,
+        goal,
+        tendency,
+        spoilage,
+        hfiGenerated,
+        finishedGood,
+        average,
+        totalProduction,
+        productionCupMinster,
+        hfiGeneratedPercentage,
+        hfiReleasedPlant,
+        hfiReleasedOtherPlant,
+        scrapPlantNoRespons,
+        scrapPlantRespons,
+        scrapOtherPlant,
+        totalReleased,
+        eorGeneration,
+        eorReleased,
+        eorHfiGeneration,
+        eorBalance,
+        plantResponsibilityReport,
+        inventory,
+        shellEndsProduction,
+        shellEndsScrap,
+        insertionDate,
+        insertionTime,
+        modificationDate,
+        modificationTime,
+        text,
+        hfiGeneratedNoResp,
+        hfiReleasedPlantNoResp,
+        mrpGroup
+    }
 }
