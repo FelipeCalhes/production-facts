@@ -3,11 +3,11 @@ annotate service.NetProductions with @(
     UI.FieldGroup #GeneratedGroup : {
         $Type : 'UI.FieldGroupType',
 Data : [
-            {
+            /*{
                 $Type : 'UI.DataField',
                 Label : 'Client',
                 Value : mandante,
-            },
+            },*/
             {
                 $Type : 'UI.DataField',
                 Label : 'Plant',
@@ -199,10 +199,11 @@ Data : [
         },
     ],
     UI.LineItem : [
+        /*
         {
             $Type : 'UI.DataField',
             Value : mandante,
-        },
+        },*/
         {
             $Type : 'UI.DataField',
             Value : centro,

@@ -1,6 +1,6 @@
 using {ProductionFactsService as srv} from './service';
 
-
+//Credit-Strokes
 annotate srv.MESStrokes with @odata.draft.enabled {
     @title: 'Centro'
     @Common.ValueList: {
@@ -97,10 +97,26 @@ annotate srv.MESInterfaces with @odata.draft.enabled {
     @title: 'H/S'
     creditoOuDebito;
 }
+//Movement-Reasons
+annotate srv.MovementReasons with @odata.draft.enabled {
+    @title: 'Mes Reason'
+    mesReason;
 
-annotate srv.NetProductions with @odata.draft.enabled {
-    @title: 'Client'
-    mandante;
+    @title: 'Sap Reason'
+    sapReason;
+
+    @title: 'Fact.Resp'
+    factResp;
+
+    @title: 'H/S'
+    creditoOuDebito;
+}
+
+
+//Net-Production
+annotate srv.NetProductions with @odata.draft.enabled { //@readonly { //@odata.draft.enabled {
+    // @title: 'Client'
+    // mandante;
 
     @title: 'Plant'
     centro;
@@ -209,7 +225,16 @@ annotate srv.NetProductions with @odata.draft.enabled {
 
     @title: 'MRP Group'
     mrpGroup;
+    
 }
 
+//Permitir entrada http sem rascunho
 annotate srv.MESStrokes with @odata.draft.bypass;
+annotate srv.NetProductions with @odata.draft.bypass;
+
+//impedir que o usuário crie, modifique ou exclua registros em NetProductions
+annotate srv.NetProductions with @UI.CreateHidden : true;
+annotate srv.NetProductions with @UI.UpdateHidden : true;
+annotate srv.NetProductions with @UI.DeleteHidden : true;
+//annotate srv.NetProductions with @UI.LineItem: [{Value: centro}];
 //annotate srv.MESInterfaces with @odata.draft.bypass;

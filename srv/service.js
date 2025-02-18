@@ -1,7 +1,7 @@
 const cds = require('@sap/cds');
 
 module.exports = cds.service.impl(async function() {
-    const { MESStrokes, Plant, MRPPlanner, ChangeReasons, MESInterfaces, NetProductions } = this.entities;
+    const { MESStrokes, Plant, MRPPlanner, ChangeReasons, MESInterfaces, MovementReasons, NetProductions } = this.entities;
     const changeReasons = [
         { id: 'A', description: 'Cálculo de OUT errado' },
         { id: 'B', description: 'Cálculo de strokes errado' },
@@ -14,7 +14,7 @@ module.exports = cds.service.impl(async function() {
     // this.on('READ', req =>{
     //     return cds.run(req.query)
     // })
-
+    //Credit-Strokes
     this.after('READ', [MESStrokes, 'ProductionFactsService.MESStrokes.drafts'], async (list, req) => {
         const select = req.query.SELECT;
         let con = await cds.connect.to('searchHelp');
@@ -107,7 +107,6 @@ module.exports = cds.service.impl(async function() {
         
     });
 
-    //App2
     this.before('UPDATE', [MESInterfaces, 'ProductionFactsService.MESInterfaces.drafts'], async (list, req) => {
         
         list.data.creditoOuDebito = list.data.creditoOuDebito.toUpperCase();
@@ -117,5 +116,18 @@ module.exports = cds.service.impl(async function() {
         
         
     });
+
+    //Movement-Reasons
+    this.before('UPDATE', [MovementReasons, 'ProductionFactsService.MovementReasons.drafts'], async (list, req) => {
+        
+        list.data.creditoOuDebito = list.data.creditoOuDebito.toUpperCase();
+        if (list.data.creditoOuDebito != 'H' && list.data.creditoOuDebito != 'S') {
+            list.reject(400, 'Digite H para crédito ou S para débito');
+        }
+        
+        
+    });
+
+    //Net-Production
 
 });

@@ -52,6 +52,10 @@ modules:
       - netproduction.zip
       name: netproduction
       target-path: resources/
+    - artifacts:
+      - movementreasons.zip
+      name: movement-reasons
+      target-path: resources/
 - name: creditstrokes
   type: html5
   path: app/credit-strokes
@@ -112,6 +116,16 @@ modules:
     - npm install
     - npm run build:cf
     supported-platforms: []
+- name: movement-reasons
+  type: html5
+  path: app/movement-reasons
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
 resources:
 - name: production-facts-destination
   type: org.cloudfoundry.managed-service
@@ -144,6 +158,13 @@ resources:
             HTML5.DynamicDestination: true
             HTML5.ForwardAuthToken: true
             Name: net-production
+            ProxyType: Internet
+            Type: HTTP
+            URL: https://~{srv-api/srv-url}
+          - Authentication: NoAuthentication
+            HTML5.DynamicDestination: true
+            HTML5.ForwardAuthToken: true
+            Name: movement-reasons
             ProxyType: Internet
             Type: HTTP
             URL: https://~{srv-api/srv-url}

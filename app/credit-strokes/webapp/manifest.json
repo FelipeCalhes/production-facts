@@ -28,7 +28,7 @@
     "crossNavigation": {
       "inbounds": {
         "mes-strokes-manage": {
-          "semanticObject": "mes-strokes",
+          "semanticObject": "creditstrokes",
           "action": "manage",
           "title": "{{flpTitle}}",
           "signature": {
@@ -153,7 +153,7 @@
     "archeType": "transactional"
   },
   "sap.cloud": {
-        "public": true,
-        "service": "production.facts"
-    }
+    "public": true,
+    "service": "production.facts"
+  }
 }

@@ -22,6 +22,12 @@ entity MESStrokes {
     lastChangeTime              : Time;
     lastChangeBy                : String(250);
 }
+
+entity changeReasons {
+    key id      : String(1);
+    description : String(40);
+}
+
 entity MESInterfaces {
     key mesReason   : String(5);
     sapReason       : String(10);
@@ -31,10 +37,17 @@ entity MESInterfaces {
                                 S = 'debito';
                             };
 }
-entity changeReasons {
-    key id      : String(1);
-    description : String(40);
+
+entity MovementReasons {
+    key mesReason   : String(5);
+    sapReason       : String(10);
+    factResp        : Boolean;
+    creditoOuDebito : String enum {
+                                H = 'credito';
+                                S = 'debito';
+                            };
 }
+
 
 entity NetProductions {
     //key mandante                  : String(3);      // Mandante
