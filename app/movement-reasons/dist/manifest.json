@@ -1,7 +1,7 @@
 {
     "_version": "1.65.0",
     "sap.app": {
-        "id": "movementreasons.movementreasons",
+        "id": "movementreasons",
         "type": "application",
         "i18n": "i18n/i18n.properties",
         "applicationVersion": {
@@ -13,7 +13,7 @@
         "sourceTemplate": {
             "id": "@sap/generator-fiori:lrop",
             "version": "1.16.2",
-            "toolsId": "df347e91-0ece-48bc-b737-e327bbde4de1"
+            "toolsId": "6beee9d6-5d21-4878-a9b8-49f8497b9f58"
         },
         "dataSources": {
             "mainService": {
@@ -22,6 +22,19 @@
                 "settings": {
                     "annotations": [],
                     "odataVersion": "4.0"
+                }
+            }
+        },
+        "crossNavigation": {
+            "inbounds": {
+                "movement-reasons-manage": {
+                    "semanticObject": "movementreasons",
+                    "action": "manage",
+                    "title": "{{flpTitle}}",
+                    "signature": {
+                        "parameters": {},
+                        "additionalParameters": "allowed"
+                    }
                 }
             }
         }
@@ -60,7 +73,7 @@
             "i18n": {
                 "type": "sap.ui.model.resource.ResourceModel",
                 "settings": {
-                    "bundleName": "movementreasons.movementreasons.i18n.i18n"
+                    "bundleName": "movementreasons.i18n.i18n"
                 }
             },
             "": {

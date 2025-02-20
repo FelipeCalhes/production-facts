@@ -10,22 +10,22 @@ entity MESStrokes {
     strokesQuantity             : Integer;
     outsPerStroke               : Integer;
     cupsQuantity                : Integer;
-    changeReason                : String(40) enum {
-                                                A = 'Cálculo de OUT errado';
-                                                B = 'Cálculo de strokes errado';
-                                                C = 'Dreno de linha';
-                                                D = 'Falha no FTTM (transporte para o SAP)';
-                                                E = 'Falha no PLC da Minster';
-                                                F = 'Reconhecimento de copos novelis';
-                                            };
+    changeReason                : Association to one changeReasons; //enum {
+    //                                             A = 'Cálculo de OUT errado';
+    //                                             B = 'Cálculo de strokes errado';
+    //                                             C = 'Dreno de linha';
+    //                                             D = 'Falha no FTTM (transporte para o SAP)';
+    //                                             E = 'Falha no PLC da Minster';
+    //                                             F = 'Reconhecimento de copos novelis';
+    //                                         };
     lastChangeDate              : Date;
     lastChangeTime              : Time;
     lastChangeBy                : String(250);
 }
 
 entity changeReasons {
-    key id      : String(1);
-    description : String(40);
+    //key id      : String(1);
+    key description : String(40);
 }
 
 entity MESInterfaces {
@@ -33,8 +33,8 @@ entity MESInterfaces {
     sapReason       : String(10);
     factResp        : Boolean;
     creditoOuDebito : String enum {
-                                H = 'credito';
-                                S = 'debito';
+                                H = 'Crédito';
+                                S = 'Débito';
                             };
 }
 

@@ -17,10 +17,9 @@ service ProductionFactsService {
         lastChangeDate,
         lastChangeTime,
         lastChangeBy,
-        _plant: association [1..1] to sh.Plant on _plant.plant = $self.center,
-        _mrpController: association [1..1] to sh.MRPPlanner on _mrpController.mrpPlanner = $self.mrpController,
-        _changeReason: association [1..1] to db.changeReasons on _changeReason.id = $self.changeReason
-    } 
+        _mrpController: association [1..1] to sh.MRPPlanner on _mrpController.mrpPlanner = $self.mrpController
+    }
+
     entity Plant      as projection on sh.Plant;
     entity MRPPlanner as projection on sh.MRPPlanner;
 

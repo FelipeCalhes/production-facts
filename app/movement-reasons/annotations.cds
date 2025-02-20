@@ -48,4 +48,3 @@ annotate service.MovementReasons with @(
         },
     ],
 );
-

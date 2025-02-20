@@ -2,7 +2,7 @@ using {ProductionFactsService as srv} from './service';
 
 //Credit-Strokes
 annotate srv.MESStrokes with @odata.draft.enabled {
-    @title: 'Centro'
+    @title: '{i18n>Centro}'
     @Common.ValueList: {
         CollectionPath: 'Plant',
         Parameters    : [
@@ -38,19 +38,19 @@ annotate srv.MESStrokes with @odata.draft.enabled {
             }
         ]
     }
-    @title: 'MRP Controller'
-    @Common.Label: 'MRP Controller'
+    @title: '{i18n>MRP_Controller}'
+    @Common.Label: '{i18n>MRP_Controller}'
     mrpController;
-    @title: 'Data de Produção'
+    @title: '{i18n>Data_de_Producao}'
     productionDate;
 
-    @title: 'Quantidade de Strokes'
+    @title: '{i18n>Quantidade_de_Strokes}'
     strokesQuantity;
 
-    @title: 'Saídas por Strokes'
+    @title: '{i18n>Saidas_por_Strokes}'
     outsPerStroke;
 
-    @title: 'Quantidade de Cups'
+    @title: '{i18n>Quantidade_de_Cups}'
     cupsQuantity;
 
     @Common.ValueList: {
@@ -58,179 +58,204 @@ annotate srv.MESStrokes with @odata.draft.enabled {
         Parameters    : [
             {
                 $Type            : 'Common.ValueListParameterInOut',
-                LocalDataProperty: 'changeReason',
-                ValueListProperty: 'id',
-            },
-            {
-                $Type            : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty: 'description'
+                LocalDataProperty: 'changeReason_description',
+                ValueListProperty: 'description',
             }
         ]
     }
-    @title: 'Motivo da Mudança'
+    @title: '{i18n>Motivo_da_Mudanca}'
     changeReason;
 
-    @title: 'Data da Última Mudança'
+    @title: '{i18n>Data_da_Ultima_Mudanca}'
     @readonly
     lastChangeDate;
 
-    @title: 'Hora da Última Mudança'
+    @title: '{i18n>Hora_da_Ultima_Mudanca}'
     @readonly
     lastChangeTime;
 
-    @title: 'Alterado Por'
+    @title: '{i18n>Alterado_Por}'
     @readonly
     lastChangeBy;
+
+    
+
+}
+
+annotate srv.ChangeReasons with @odata.draft.enabled {
+
+    @title: '{i18n>Change_description}'
+    description;
 
 }
 
 annotate srv.MESInterfaces with @odata.draft.enabled {
-    @title: 'Mes Reason'
+    @title: '{i18n>Mes_Reason}'
     mesReason;
 
-    @title: 'Sap Reason'
+    @title: '{i18n>Sap_Reason}'
     sapReason;
 
-    @title: 'Fact.Resp'
+    @title: '{i18n>Fact_Resp}'
     factResp;
 
-    @title: 'H/S'
+    @title: '{i18n>H_S}'
     creditoOuDebito;
 }
 //Movement-Reasons
 annotate srv.MovementReasons with @odata.draft.enabled {
-    @title: 'Mes Reason'
+    @title: '{i18n>Mes_Reason}'
     mesReason;
 
-    @title: 'Sap Reason'
+    @title: '{i18n>Sap_Reason}'
     sapReason;
 
-    @title: 'Fact.Resp'
+    @title: '{i18n>Fact_Resp}'
     factResp;
 
-    @title: 'H/S'
+    @title: '{i18n>H_S}'
     creditoOuDebito;
 }
 
 
 //Net-Production
 annotate srv.NetProductions with @odata.draft.enabled { //@readonly { //@odata.draft.enabled {
-    // @title: 'Client'
+    // @title: '{i18n>Client}'
     // mandante;
 
-    @title: 'Plant'
+    @title: '{i18n>Plant}'
     centro;
 
-    @title: 'MRP Planner'
+    @title: '{i18n>MRP_Planner}'
     planejadorMrp;
 
-    @title: 'Release Date'
+    @title: '{i18n>Release_Date}'
     dataLancamento;
 
-    @title: 'Work Center'
+    @title: '{i18n>Work_Center}'
     centroTrabalho;
 
-    @title: 'Material Number'
+    @title: '{i18n>Material_Number}'
     numeroMaterial;
     
-    @title: 'Goal'
+    @title: '{i18n>Goal}'
     goal;
 
-    @title: 'Tendency'
+    @title: '{i18n>Tendency}'
     tendency;
 
-    @title: 'Spoilage'
+    @title: '{i18n>Spoilage}'
     spoilage;
 
-    @title: 'HFI Generated'
+    @title: '{i18n>HFI_Generated}'
     hfiGenerated;
 
-    @title: 'Finished Good'
+    @title: '{i18n>Finished_Good}'
     finishedGood;
 
-    @title: 'Average'
+    @title: '{i18n>Average}'
     average;
 
-    @title: 'Total Production'
+    @title: '{i18n>Total_Production}'
     totalProduction;
 
-    @title: 'Production Cup Minster'
+    @title: '{i18n>Production_Cup_Minster}'
     productionCupMinster;
 
-    @title: 'HFI Generated (%)'
+    @title: '{i18n>HFI_Generated_Percentage}'
     hfiGeneratedPercentage;
     
-    @title: 'HFI Released Plant'
+    @title: '{i18n>HFI_Released_Plant}'
     hfiReleasedPlant;
 
-    @title: 'HFI Released Other Plant'
+    @title: '{i18n>HFI_Released_Other_Plant}'
     hfiReleasedOtherPlant;
 
-    @title: 'Scrap Plant No Respons'
+    @title: '{i18n>Scrap_Plant_No_Respons}'
     scrapPlantNoRespons;
 
-    @title: 'Scrap Plant Respons'
+    @title: '{i18n>Scrap_Plant_Respons}'
     scrapPlantRespons;
 
-    @title: 'Scrap Other Plant'
+    @title: '{i18n>Scrap_Other_Plant}'
     scrapOtherPlant;
 
-    @title: 'Total Released'
+    @title: '{i18n>Total_Released}'
     totalReleased;
 
-    @title: 'EOR Generation'
+    @title: '{i18n>EOR_Generation}'
     eorGeneration;
 
-    @title: 'EOR Released'
+    @title: '{i18n>EOR_Released}'
     eorReleased;
 
-    @title: 'EOR HFI Generation'
+    @title: '{i18n>EOR_HFI_Generation}'
     eorHfiGeneration;
 
-    @title: 'EOR Balance'
+    @title: '{i18n>EOR_Balance}'
     eorBalance;
     
-    @title: 'Plant Responsibility Report'
+    @title: '{i18n>Plant_Responsibility_Report}'
     plantResponsibilityReport;
 
-    @title: 'Inventory'
+    @title: '{i18n>Inventory}'
     inventory;
 
-    @title: 'Shell Ends Production'
+    @title: '{i18n>Shell_Ends_Production}'
     shellEndsProduction;
 
-    @title: 'Shell Ends Scrap'
+    @title: '{i18n>Shell_Ends_Scrap}'
     shellEndsScrap;
 
-    @title: 'Insertion Date'
+    @title: '{i18n>Insertion_Date}'
     insertionDate;
 
-    @title: 'Insertion Time'
+    @title: '{i18n>Insertion_Time}'
     insertionTime;
 
-    @title: 'Modification Date'
+    @title: '{i18n>Modification_Date}'
     modificationDate;
 
-    @title: 'Modification Time'
+    @title: '{i18n>Modification_Time}'
     modificationTime;
 
-    @title: 'Text'
+    @title: '{i18n>Text}'
     text;
 
-    @title: 'HFI Generated No Resp'
+    @title: '{i18n>HFI_Generated_No_Resp}'
     hfiGeneratedNoResp;
 
-    @title: 'HFI Released Plant No Resp'
+    @title: '{i18n>HFI_Released_Plant_No_Resp}'
     hfiReleasedPlantNoResp;
 
-    @title: 'MRP Group'
+    @title: '{i18n>MRP_Group}'
     mrpGroup;
     
 }
+/*
+annotate srv.MESStrokes with @(
+Capabilities: {
+   NavigationRestrictions : {
+       $Type : 'Capabilities.NavigationRestrictionsType',
+       RestrictedProperties : [
+           {
+               $Type : 'Capabilities.NavigationPropertyRestriction',
+               NavigationProperty : DraftAdministrativeData,
+               FilterRestrictions : {
+                   $Type : 'Capabilities.FilterRestrictionsType',
+    
+                   Filterable : false,
+               },
+           },
+       ],
+   },
+});
+*/
 
 //Permitir entrada http sem rascunho
 annotate srv.MESStrokes with @odata.draft.bypass;
 annotate srv.NetProductions with @odata.draft.bypass;
+//annotate srv. MovementReasons with @odata.draft.bypass;
 
 //impedir que o usuário crie, modifique ou exclua registros em NetProductions
 annotate srv.NetProductions with @UI.CreateHidden : true;
@@ -238,3 +263,4 @@ annotate srv.NetProductions with @UI.UpdateHidden : true;
 annotate srv.NetProductions with @UI.DeleteHidden : true;
 //annotate srv.NetProductions with @UI.LineItem: [{Value: centro}];
 //annotate srv.MESInterfaces with @odata.draft.bypass;
+

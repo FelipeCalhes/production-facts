@@ -2,7 +2,7 @@
 
 specVersion: "3.1"
 metadata:
-  name: movementreasons.movementreasons
+  name: movementreasons
 type: application
 server:
   customMiddleware:

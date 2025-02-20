@@ -1,4 +1,0 @@
-center,productionDate,mrpController,strokesQuantity,outsPerStroke,cupsQuantity,changeReason,lastChangeDate,lastChangeTime,lastChangeBy
-ARBA,2023-10-01,005,1000,10,100,CalculoDeOUTErrado,2023-10-01,12:00:00,usuario1
-ARBA,2023-10-02,006,1500,15,150,FalhaNoFTTM,2023-10-02,13:00:00,usuario2
-ARBA,2023-10-03,008,2000,20,200,DrenoDeLinha,2023-10-03,14:00:00,usuario3

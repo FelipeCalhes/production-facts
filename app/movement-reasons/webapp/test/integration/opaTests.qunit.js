@@ -1,15 +1,15 @@
 sap.ui.require(
     [
         'sap/fe/test/JourneyRunner',
-        'movementreasons/movementreasons/test/integration/FirstJourney',
-		'movementreasons/movementreasons/test/integration/pages/MovementReasonsList',
-		'movementreasons/movementreasons/test/integration/pages/MovementReasonsObjectPage'
+        'movementreasons/test/integration/FirstJourney',
+		'movementreasons/test/integration/pages/MovementReasonsList',
+		'movementreasons/test/integration/pages/MovementReasonsObjectPage'
     ],
     function(JourneyRunner, opaJourney, MovementReasonsList, MovementReasonsObjectPage) {
         'use strict';
         var JourneyRunner = new JourneyRunner({
             // start index.html in web folder
-            launchUrl: sap.ui.require.toUrl('movementreasons/movementreasons') + '/index.html'
+            launchUrl: sap.ui.require.toUrl('movementreasons') + '/index.html'
         });
 
        

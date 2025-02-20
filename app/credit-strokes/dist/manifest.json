@@ -115,6 +115,7 @@
                     "name": "sap.fe.templates.ListReport",
                     "options": {
                         "settings": {
+                            "initialLoad": "Enabled",
                             "contextPath": "/MESStrokes",
                             "variantManagement": "Page",
                             "navigation": {
@@ -127,7 +128,7 @@
                             "controlConfiguration": {
                                 "@com.sap.vocabularies.UI.v1.LineItem": {
                                     "tableSettings": {
-                                        "type": "ResponsiveTable"
+                                        "type": "GridTable"
                                     }
                                 }
                             }

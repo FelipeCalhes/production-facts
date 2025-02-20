@@ -31,15 +31,21 @@
     "deploy": "cf deploy mta_archives/archive.mtar --retries 1",
     "watch-mes-interface": "cds watch --open mes-interface/webapp/index.html?sap-ui-xx-viewCache=false",
     "watch-net-production": "cds watch --open net-production/webapp/index.html?sap-ui-xx-viewCache=false",
-    "watch-movement-reasons": "cds watch --open movement-reasons/webapp/index.html?sap-ui-xx-viewCache=false"
+    "watch-movement-reasons": "cds watch --open movement-reasons/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-change-reasons": "cds watch --open change-reasons/webapp/index.html?sap-ui-xx-viewCache=false"
   },
   "sapux": [
     "app/credit-strokes",
     "app/mes-interface",
     "app/net-production",
-    "app/movement-reasons"
+    "app/movement-reasons",
+    "app/movement-reasons",
+    "app/change-reasons"
   ],
   "cds": {
+    "fiori": {
+      "draft_deletion_timeout": 300000
+    },
     "requires": {
       "searchHelp": {
         "kind": "odata-v2",
@@ -75,10 +81,7 @@
         }
       },
       "db": {
-        "kind": "sqlite",
-        "credentials": {
-          "url": "teste.db"
-        }
+        "kind": "hana"
       }
     }
   }
