@@ -22,4 +22,15 @@ annotate service.ChangeReasons with @(
             Value : description,
         },
     ],
+
+    PresentationVariant       : {
+        $Type         : 'UI.PresentationVariantType',
+        SortOrder     : [{
+            $Type     : 'Common.SortOrderType',
+            Property  : description,
+            Descending: false,
+        }
+        ],
+        Visualizations: ['@UI.LineItem']
+    }
 );

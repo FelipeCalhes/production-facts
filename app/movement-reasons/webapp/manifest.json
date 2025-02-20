@@ -114,6 +114,7 @@
           "name": "sap.fe.templates.ListReport",
           "options": {
             "settings": {
+              "initialLoad": "Enabled",
               "contextPath": "/MovementReasons",
               "variantManagement": "Page",
               "navigation": {

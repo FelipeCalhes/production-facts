@@ -4,6 +4,7 @@ module.exports = cds.service.impl(async function() {
     const { MESStrokes, Plant, MRPPlanner, ChangeReasons, MESInterfaces, MovementReasons, NetProductions } = this.entities;
 
     this.after('READ', [MESStrokes, 'ProductionFactsService.MESStrokes.drafts'], async (list, req) => {
+        //console.log('testeeeeeeeeiiiiiiiiiiiiiiiiii')
         const select = req.query.SELECT;
         let con = await cds.connect.to('searchHelp');
         if (!select.columns) return list;
@@ -43,7 +44,23 @@ module.exports = cds.service.impl(async function() {
         return con.run(req.query)
     });
 
+    // this.on('READ', [MRPPlanner], async (req) => {
+    //     console.log('maaaaaaaaaaiiiiiiiiiiissssssssss')
+
+    // });
+
+    // this.on('CREATE', [MESStrokes], async (list, req) => {
+    //     console.log('testeeeeeeeeiiiiiiiiiiiiiiiiii')
+    // });
+
+    // this.before('CREATE', [MESStrokes], async (list, req) => {
+    //     console.log('testaaaaaaannnnndooooooooooooooooooo')
+    // });
+
+
     this.before('UPDATE', [MESStrokes], async (list, req) => {
+        //console.log('testeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee')
+        //req.info(200, 'Alteração aceita');
         //usuário sap
         const user = new cds.User.Privileged
         //list.data.lastChangeBy = user.id;
