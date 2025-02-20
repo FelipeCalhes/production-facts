@@ -2,19 +2,7 @@ const cds = require('@sap/cds');
 
 module.exports = cds.service.impl(async function() {
     const { MESStrokes, Plant, MRPPlanner, ChangeReasons, MESInterfaces, MovementReasons, NetProductions } = this.entities;
-    // const changeReasons = [
-    //     { id: 'A', description: 'Cálculo de OUT errado' },
-    //     { id: 'B', description: 'Cálculo de strokes errado' },
-    //     { id: 'C', description: 'Dreno de linha' },
-    //     { id: 'D', description: 'Falha no FTTM (transporte para o SAP)' },
-    //     { id: 'E', description: 'Falha no PLC da Minster' },
-    //     { id: 'F', description: 'Reconhecimento de copos novelis' }
-    // ]
 
-    // this.on('READ', req =>{
-    //     return cds.run(req.query)
-    // })
-    //Credit-Strokes
     this.after('READ', [MESStrokes, 'ProductionFactsService.MESStrokes.drafts'], async (list, req) => {
         const select = req.query.SELECT;
         let con = await cds.connect.to('searchHelp');
@@ -38,12 +26,15 @@ module.exports = cds.service.impl(async function() {
                     line._mrpController = el
                 }
             })
-
-
-            //line.lastChangedBy = 'Lucas'
         })
         
         return list
+    });
+
+    this.on('READ', 'ProductionFactsService.MESStrokes.drafts', async (req) => {
+        if(req.subject.ref[0].where){
+            return (cds.run(req.query))
+        } else  return []
     });
 
 

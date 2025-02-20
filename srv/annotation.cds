@@ -232,7 +232,7 @@ annotate srv.NetProductions with @odata.draft.enabled { //@readonly { //@odata.d
     mrpGroup;
     
 }
-/*
+
 annotate srv.MESStrokes with @(
 Capabilities: {
    NavigationRestrictions : {
@@ -250,7 +250,8 @@ Capabilities: {
        ],
    },
 });
-*/
+
+
 
 //Permitir entrada http sem rascunho
 annotate srv.MESStrokes with @odata.draft.bypass;

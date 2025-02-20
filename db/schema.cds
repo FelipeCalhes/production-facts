@@ -10,14 +10,7 @@ entity MESStrokes {
     strokesQuantity             : Integer;
     outsPerStroke               : Integer;
     cupsQuantity                : Integer;
-    changeReason                : Association to one changeReasons; //enum {
-    //                                             A = 'Cálculo de OUT errado';
-    //                                             B = 'Cálculo de strokes errado';
-    //                                             C = 'Dreno de linha';
-    //                                             D = 'Falha no FTTM (transporte para o SAP)';
-    //                                             E = 'Falha no PLC da Minster';
-    //                                             F = 'Reconhecimento de copos novelis';
-    //                                         };
+    changeReason                : Association to one changeReasons;
     lastChangeDate              : Date;
     lastChangeTime              : Time;
     lastChangeBy                : String(250);
