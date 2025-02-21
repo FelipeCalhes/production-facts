@@ -1,0 +1,54 @@
+{
+  "requires": {
+    "[hybrid]": {
+      "connectivity": {
+        "binding": {
+          "type": "cf",
+          "apiEndpoint": "https://api.cf.us20.hana.ondemand.com",
+          "org": "ball-d",
+          "space": "CPI_DEV",
+          "instance": "production-facts-connectivity",
+          "key": "production-facts-connectivity-key",
+          "resolved": false,
+          "credentials": {
+            "onpremise_proxy_host": "localhost"
+          }
+        },
+        "kind": "connectivity",
+        "vcap": {
+          "name": "connectivity"
+        }
+      },
+      "destinations": {
+        "binding": {
+          "type": "cf",
+          "apiEndpoint": "https://api.cf.us20.hana.ondemand.com",
+          "org": "ball-d",
+          "space": "CPI_DEV",
+          "instance": "production-facts-destination",
+          "key": "production-facts-destination-key",
+          "resolved": false
+        },
+        "kind": "destinations",
+        "vcap": {
+          "name": "destinations"
+        }
+      },
+      "db": {
+        "binding": {
+          "type": "cf",
+          "apiEndpoint": "https://api.cf.us20.hana.ondemand.com",
+          "org": "ball-d",
+          "space": "CPI_DEV",
+          "instance": "production-facts-db",
+          "key": "production-facts-db-key",
+          "resolved": false
+        },
+        "kind": "hana-cloud",
+        "vcap": {
+          "name": "db"
+        }
+      }
+    }
+  }
+}

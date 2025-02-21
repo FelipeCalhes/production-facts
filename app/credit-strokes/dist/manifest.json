@@ -26,6 +26,12 @@
             }
         },
         "crossNavigation": {
+            "outbounds": {
+                "reasons-navigation": {
+                    "semanticObject": "changereasons",
+                    "action": "manage"
+                }
+            },
             "inbounds": {
                 "mes-strokes-manage": {
                     "semanticObject": "creditstrokes",
@@ -129,6 +135,13 @@
                                 "@com.sap.vocabularies.UI.v1.LineItem": {
                                     "tableSettings": {
                                         "type": "GridTable"
+                                    },
+                                    "actions": {
+                                        "reasons": {
+                                            "press": "creditstrokes.ext.controller.CustomActions.onReasons",
+                                            "text": "{i18n>reasons}",
+                                            "requiresSelection": false
+                                        }
                                     }
                                 }
                             }

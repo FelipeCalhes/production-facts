@@ -101,20 +101,16 @@ annotate service.MESStrokes with @(
             Value : lastChangeTime,
         }
     ],
-    PresentationVariant       : {
-        $Type         : 'UI.PresentationVariantType',
+    UI.PresentationVariant       : {
         SortOrder     : [{
-            $Type     : 'Common.SortOrderType',
             Property  : productionDate,
             Descending: true,
         }, 
         {
-            $Type     : 'Common.SortOrderType',
             Property  : center,
             Descending: false,
         },
         {
-            $Type     : 'Common.SortOrderType',
             Property  : mrpController,
             Descending: false,
         }

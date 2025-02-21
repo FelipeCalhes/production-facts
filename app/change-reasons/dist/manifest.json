@@ -26,6 +26,12 @@
             }
         },
         "crossNavigation": {
+            "outbounds": {
+                "reasons-navigation": {
+                    "semanticObject": "changereasons",
+                    "action": "manage"
+                }
+            },
             "inbounds": {
                 "change-reasons-manage": {
                     "semanticObject": "changereasons",
@@ -121,6 +127,11 @@
                                 "ChangeReasons": {
                                     "detail": {
                                         "route": "ChangeReasonsObjectPage"
+                                    },
+                                    "_composition_list": {
+                                        "detail": {
+                                            "outbound": "reasons-navigation"
+                                        }
                                     }
                                 }
                             },

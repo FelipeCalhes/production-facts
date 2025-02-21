@@ -4,7 +4,6 @@ _out
 *.sqlite
 connection.properties
 default-*.json
-.cdsrc-private.json
 gen/
 node_modules/
 target/
@@ -17,6 +16,7 @@ target/
 *_mta_build_tmp
 *.mtar
 mta_archives/
+*.zip
 
 # Other
 .DS_Store
