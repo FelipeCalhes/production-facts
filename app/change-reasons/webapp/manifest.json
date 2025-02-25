@@ -116,14 +116,7 @@
             "settings": {
               "initialLoad": "Enabled",
               "contextPath": "/ChangeReasons",
-              "variantManagement": "Page",
-              "navigation": {
-                "ChangeReasons": {
-                  "detail": {
-                    "route": "ChangeReasonsObjectPage"
-                  }
-                }
-              },
+              "variantManagement": "Page",            
               "controlConfiguration": {
                 "@com.sap.vocabularies.UI.v1.LineItem": {
                   "tableSettings": {

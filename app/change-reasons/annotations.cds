@@ -6,6 +6,8 @@ annotate service.ChangeReasons with @(
             {
                 $Type : 'UI.DataField',
                 Value : description,
+                Label : '{@i18n>Change_description}',
+                @title: '{i18n>Change_description}'
             },
         ],
     },
@@ -20,6 +22,7 @@ annotate service.ChangeReasons with @(
         {
             $Type : 'UI.DataField',
             Value : description,
+            Label : '{@i18n>Change_description}',
         },
     ],
 

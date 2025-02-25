@@ -6,18 +6,22 @@ annotate service.MovementReasons with @(
             {
                 $Type : 'UI.DataField',
                 Value : mesReason,
+                Label : '{@i18n>Mes_Reason}',
             },
             {
                 $Type : 'UI.DataField',
                 Value : sapReason,
+                Label : '{@i18n>Sap_Reason}',
             },
             {
                 $Type : 'UI.DataField',
                 Value : factResp,
+                Label : '{@i18n>Fact_Resp}',
             },
             {
                 $Type : 'UI.DataField',
                 Value : creditoOuDebito,
+                Label : '{@i18n>H_S}',
             },
         ],
     },
@@ -25,7 +29,7 @@ annotate service.MovementReasons with @(
         {
             $Type : 'UI.ReferenceFacet',
             ID : 'GeneratedFacet1',
-            Label : 'General Information',
+            Label : '{@i18n>General_Information}',
             Target : '@UI.FieldGroup#GeneratedGroup',
         },
     ],
@@ -33,18 +37,22 @@ annotate service.MovementReasons with @(
         {
             $Type : 'UI.DataField',
             Value : mesReason,
+            Label : '{@i18n>Mes_Reason}',
         },
         {
             $Type : 'UI.DataField',
             Value : sapReason,
+            Label : '{@i18n>Sap_Reason}',
         },
         {
             $Type : 'UI.DataField',
             Value : factResp,
+            Label : '{@i18n>Fact_Resp}',
         },
         {
             $Type : 'UI.DataField',
             Value : creditoOuDebito,
+            Label : '{@i18n>H_S}',
         },
     ],
 );
