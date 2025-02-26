@@ -2,7 +2,7 @@ using {ProductionFactsService as srv} from './service';
 
 //Credit-Strokes
 annotate srv.MESStrokes with @odata.draft.enabled {
-    @title: '{@i18n>Centro}'
+    @title: '{i18n>Centro}'
     @Common.ValueList: {
         CollectionPath: 'Plant',
         Parameters    : [
@@ -38,19 +38,19 @@ annotate srv.MESStrokes with @odata.draft.enabled {
             }
         ]
     }
-    @title: '{@i18n>MRP_Controller}'
-    @Common.Label: '{@i18n>MRP_Controller}'
+    @title: '{i18n>MRP_Controller}'
+    @Common.Label: '{i18n>MRP_Controller}'
     mrpController;
-    @title: '{@i18n>Data_de_Producao}'
+    @title: '{i18n>Data_de_Producao}'
     productionDate;
 
-    @title: '{@i18n>Quantidade_de_Strokes}'
+    @title: '{i18n>Quantidade_de_Strokes}'
     strokesQuantity;
 
-    @title: '{@i18n>Saidas_por_Strokes}'
+    @title: '{i18n>Saidas_por_Strokes}'
     outsPerStroke;
 
-    @title: '{@i18n>Quantidade_de_Cups}'
+    @title: '{i18n>Quantidade_de_Cups}'
     cupsQuantity;
 
     @Common.ValueList: {
@@ -63,18 +63,18 @@ annotate srv.MESStrokes with @odata.draft.enabled {
             }
         ]
     }
-    @title: '{@i18n>Motivo_da_Mudanca}'
+    @title: '{i18n>Motivo_da_Mudanca}'
     changeReason;
 
-    @title: '{@i18n>Data_da_Ultima_Mudanca}'
+    @title: '{i18n>Data_da_Ultima_Mudanca}'
     @readonly
     lastChangeDate;
 
-    @title: '{@i18n>Hora_da_Ultima_Mudanca}'
+    @title: '{i18n>Hora_da_Ultima_Mudanca}'
     @readonly
     lastChangeTime;
 
-    @title: '{@i18n>Alterado_Por}'
+    @title: '{i18n>Alterado_Por}'
     @readonly
     lastChangeBy;
 
@@ -84,151 +84,151 @@ annotate srv.MESStrokes with @odata.draft.enabled {
 
 annotate srv.ChangeReasons with @odata.draft.enabled {
 
-    //@title: '{@i18n>Change_description2}'
-    //description;
+    @title: '{i18n>Change_description}'
+    description;
 
 }
 
 annotate srv.MESInterfaces with @odata.draft.enabled {
-    @title: '{@i18n>Mes_Reason}'
+    @title: '{i18n>Mes_Reason}'
     mesReason;
 
-    @title: '{@i18n>Sap_Reason}'
+    @title: '{i18n>Sap_Reason}'
     sapReason;
 
-    @title: '{@i18n>Fact_Resp}'
+    @title: '{i18n>Fact_Resp}'
     factResp;
 
-    @title: '{@i18n>H_S}'
+    @title: '{i18n>H_S}'
     creditoOuDebito;
 }
 //Movement-Reasons
 annotate srv.MovementReasons with @odata.draft.enabled {
-    @title: '{@i18n>Mes_Reason}'
+    @title: '{i18n>Mes_Reason}'
     mesReason;
 
-    @title: '{@i18n>Sap_Reason}'
+    @title: '{i18n>Sap_Reason}'
     sapReason;
 
-    @title: '{@i18n>Fact_Resp}'
+    @title: '{i18n>Fact_Resp}'
     factResp;
 
-    @title: '{@i18n>H_S}'
+    @title: '{i18n>H_S}'
     creditoOuDebito;
 }
 
 
 //Net-Production
 annotate srv.NetProductions { //@readonly { //@odata.draft.enabled {
-    // @title: '{@i18n>Client}'
+    // @title: '{i18n>Client}'
     // mandante;
 
-    @title: '{@i18n>Plant}'
+    @title: '{i18n>Plant}'
     centro;
 
-    @title: '{@i18n>MRP_Planner}'
+    @title: '{i18n>MRP_Planner}'
     planejadorMrp;
 
-    @title: '{@i18n>Release_Date}'
+    @title: '{i18n>Release_Date}'
     dataLancamento;
 
-    @title: '{@i18n>Work_Center}'
+    @title: '{i18n>Work_Center}'
     centroTrabalho;
 
-    @title: '{@i18n>Material_Number}'
+    @title: '{i18n>Material_Number}'
     numeroMaterial;
     
-    @title: '{@i18n>Goal}'
+    @title: '{i18n>Goal}'
     goal;
 
-    @title: '{@i18n>Tendency}'
+    @title: '{i18n>Tendency}'
     tendency;
 
-    @title: '{@i18n>Spoilage}'
+    @title: '{i18n>Spoilage}'
     spoilage;
 
-    @title: '{@i18n>HFI_Generated}'
+    @title: '{i18n>HFI_Generated}'
     hfiGenerated;
 
-    @title: '{@i18n>Finished_Good}'
+    @title: '{i18n>Finished_Good}'
     finishedGood;
 
-    @title: '{@i18n>Average}'
+    @title: '{i18n>Average}'
     average;
 
-    @title: '{@i18n>Total_Production}'
+    @title: '{i18n>Total_Production}'
     totalProduction;
 
-    @title: '{@i18n>Production_Cup_Minster}'
+    @title: '{i18n>Production_Cup_Minster}'
     productionCupMinster;
 
-    @title: '{@i18n>HFI_Generated_Percentage}'
+    @title: '{i18n>HFI_Generated_Percentage}'
     hfiGeneratedPercentage;
     
-    @title: '{@i18n>HFI_Released_Plant}'
+    @title: '{i18n>HFI_Released_Plant}'
     hfiReleasedPlant;
 
-    @title: '{@i18n>HFI_Released_Other_Plant}'
+    @title: '{i18n>HFI_Released_Other_Plant}'
     hfiReleasedOtherPlant;
 
-    @title: '{@i18n>Scrap_Plant_No_Respons}'
+    @title: '{i18n>Scrap_Plant_No_Respons}'
     scrapPlantNoRespons;
 
-    @title: '{@i18n>Scrap_Plant_Respons}'
+    @title: '{i18n>Scrap_Plant_Respons}'
     scrapPlantRespons;
 
-    @title: '{@i18n>Scrap_Other_Plant}'
+    @title: '{i18n>Scrap_Other_Plant}'
     scrapOtherPlant;
 
-    @title: '{@i18n>Total_Released}'
+    @title: '{i18n>Total_Released}'
     totalReleased;
 
-    @title: '{@i18n>EOR_Generation}'
+    @title: '{i18n>EOR_Generation}'
     eorGeneration;
 
-    @title: '{@i18n>EOR_Released}'
+    @title: '{i18n>EOR_Released}'
     eorReleased;
 
-    @title: '{@i18n>EOR_HFI_Generation}'
+    @title: '{i18n>EOR_HFI_Generation}'
     eorHfiGeneration;
 
-    @title: '{@i18n>EOR_Balance}'
+    @title: '{i18n>EOR_Balance}'
     eorBalance;
     
-    @title: '{@i18n>Plant_Responsibility_Report}'
+    @title: '{i18n>Plant_Responsibility_Report}'
     plantResponsibilityReport;
 
-    @title: '{@i18n>Inventory}'
+    @title: '{i18n>Inventory}'
     inventory;
 
-    @title: '{@i18n>Shell_Ends_Production}'
+    @title: '{i18n>Shell_Ends_Production}'
     shellEndsProduction;
 
-    @title: '{@i18n>Shell_Ends_Scrap}'
+    @title: '{i18n>Shell_Ends_Scrap}'
     shellEndsScrap;
 
-    @title: '{@i18n>Insertion_Date}'
+    @title: '{i18n>Insertion_Date}'
     insertionDate;
 
-    @title: '{@i18n>Insertion_Time}'
+    @title: '{i18n>Insertion_Time}'
     insertionTime;
 
-    @title: '{@i18n>Modification_Date}'
+    @title: '{i18n>Modification_Date}'
     modificationDate;
 
-    @title: '{@i18n>Modification_Time}'
+    @title: '{i18n>Modification_Time}'
     modificationTime;
 
-    @title: '{@i18n>Text}'
+    @title: '{i18n>Text}'
     text;
 
-    @title: '{@i18n>HFI_Generated_No_Resp}'
+    @title: '{i18n>HFI_Generated_No_Resp}'
     hfiGeneratedNoResp;
 
-    @title: '{@i18n>HFI_Released_Plant_No_Resp}'
+    @title: '{i18n>HFI_Released_Plant_No_Resp}'
     hfiReleasedPlantNoResp;
 
-    @title: '{@i18n>MRP_Group}'
+    @title: '{i18n>MRP_Group}'
     mrpGroup;
     
 }

@@ -20,6 +20,16 @@ service ProductionFactsService {
         _mrpController: association [1..1] to sh.MRPPlanner on _mrpController.mrpPlanner = $self.mrpController
     }
 
+    entity MESStrokes_insert {
+        key center                 : String(4);
+        key productionDate          : Date;
+        key mrpController           : String(3);
+        strokesQuantity             : Integer;
+        outsPerStroke               : Integer;
+        cupsQuantity                : Integer;
+        
+    }
+
     entity Plant      as projection on sh.Plant;
     entity MRPPlanner as projection on sh.MRPPlanner;
 

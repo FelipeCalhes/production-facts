@@ -11,7 +11,7 @@ annotate service.MESStrokes with @(
             {
             $Type : 'UI.DataField',
             Value : productionDate,
-            Label : '{@i18n>Data_de_Producao}'
+            Label : '{@i18n>Data_de_Producao}',
             },
             {
             $Type : 'UI.DataField',
@@ -76,7 +76,7 @@ annotate service.MESStrokes with @(
         {
             $Type : 'UI.DataField',
             Value : productionDate,
-            Label : '{@i18n>Data_de_Producao}'
+            Label : '{@i18n>Data_de_Producao}',
         },
         {
             $Type : 'UI.DataField',
