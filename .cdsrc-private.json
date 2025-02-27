@@ -48,6 +48,20 @@
         "vcap": {
           "name": "db"
         }
+      },
+      "custom-service:ecc-cons": {
+        "binding": {
+          "type": "cf",
+          "apiEndpoint": "https://api.cf.us20.hana.ondemand.com",
+          "org": "ball-d",
+          "space": "CPI_DEV",
+          "instance": "ecc-cons",
+          "key": "sapecc_em_service_key",
+          "resolved": false
+        },
+        "vcap": {
+          "name": "custom-service:ecc-cons"
+        }
       }
     }
   }

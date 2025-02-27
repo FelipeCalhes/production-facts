@@ -2,7 +2,12 @@ const cds = require('@sap/cds');
 
 module.exports = cds.service.impl(async function() {
     const { MESStrokes, MESStrokes_insert, Plant, MRPPlanner, ChangeReasons, MESInterfaces, MovementReasons, NetProductions } = this.entities;
+    const messaging = await cds.connect.to('messaging')
+    const log = cds.log('ProductionFactsService')
+    messaging.on('ball/emdev/ecc-cons/productionfacts', async (msg) => { 
+        log.info('Received a message from topic ball/emdev/ecc-cons/productionfacts')
 
+    })
     //MesStrokes
     this.after('READ', [MESStrokes, 'ProductionFactsService.MESStrokes.drafts'], async (list, req) => {
         const select = req.query.SELECT;

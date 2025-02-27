@@ -13,7 +13,8 @@
     "@sap/hana-client": "2.23.24",
     "@sap/xssec": "^4",
     "express": "^4",
-    "soap": "^1.1.7"
+    "soap": "^1.1.7",
+    "@sap/xb-msg-amqp-v100": "^0.9.58"
   },
   "devDependencies": {
     "@cap-js/cds-types": "^0.7.0",
@@ -82,6 +83,17 @@
       },
       "db": {
         "kind": "hana"
+      },
+      "messaging": {
+        "kind": "enterprise-messaging-shared",
+        "queue": {
+          "name": "ball/emdev/ecc-cons/productionfacts",
+          "accessType": "NON_EXCLUSIVE",
+          "maxMessageSizeInBytes": 19000000
+        },
+        "amqp": {
+          "incomingSessionWindow": 100
+        }
       }
     }
   }
