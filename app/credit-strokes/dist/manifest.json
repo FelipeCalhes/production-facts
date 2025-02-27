@@ -152,6 +152,7 @@
                     "type": "Component",
                     "id": "MESStrokesObjectPage",
                     "name": "sap.fe.templates.ObjectPage",
+                    "title": "Strokes/Cups Management (MES x SAP Interface)",
                     "options": {
                         "settings": {
                             "editableHeaderContent": false,
