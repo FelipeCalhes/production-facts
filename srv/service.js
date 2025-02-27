@@ -33,6 +33,8 @@ module.exports = cds.service.impl(async function() {
     });
 
     this.on('READ', ['ProductionFactsService.MESStrokes.drafts', 'ProductionFactsService.ChangeReasons.drafts'], async (req) => {
+        //console.log("ooooooolaaaaaaaa");
+        //console.log(req);
         if(req.subject.ref[0].where){
             return (cds.run(req.query))
         } else  return []
@@ -61,7 +63,12 @@ module.exports = cds.service.impl(async function() {
         list.data.lastChangeDate = formattedDate;
 
         // hora atual formatada em horas:minutos:segundos
-        const formattedTime = `${String(currentDate.getHours()).padStart(2, '0')}:${String(currentDate.getMinutes()).padStart(2, '0')}:${String(currentDate.getSeconds()).padStart(2, '0')}`;
+        const formattedTime = new Intl.DateTimeFormat('pt-BR', {
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+            timeZone: 'America/Sao_Paulo'
+        }).format(currentDate);
         list.data.lastChangeTime = formattedTime;
 
 
@@ -84,7 +91,13 @@ module.exports = cds.service.impl(async function() {
         list.data.lastChangeDate = formattedDate;
 
         // hora atual formatada em horas:minutos:segundos
-        const formattedTime = `${String(currentDate.getHours()).padStart(2, '0')}:${String(currentDate.getMinutes()).padStart(2, '0')}:${String(currentDate.getSeconds()).padStart(2, '0')}`;
+        //const formattedTime = `${String(currentDate.getHours()).padStart(2, '0')}:${String(currentDate.getMinutes()).padStart(2, '0')}:${String(currentDate.getSeconds()).padStart(2, '0')}`;
+        const formattedTime = new Intl.DateTimeFormat('pt-BR', {
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+            timeZone: 'America/Sao_Paulo'
+        }).format(currentDate);
         list.data.lastChangeTime = formattedTime;
 
         if (list.data.changeReason_description == null || list.data.changeReason_description.length == 0) {
@@ -126,13 +139,13 @@ module.exports = cds.service.impl(async function() {
 
     //NetProductions
     this.after('READ', [NetProductions], async (list, req) => {
-        //console.log('testeeeeeeeeiiiiiiiiiiiiiiiiii')
-        const select = req.query.SELECT;
-        let con = await cds.connect.to('searchHelp');
-        resMrps = con.run(SELECT.from('NetProductions'));
-        
-        
-        return list
+        // //console.log('testeeeeeeeeiiiiiiiiiiiiiiiiii')
+        // const select = req.query.SELECT;
+        // let con = await cds.connect.to('searchHelpNet');
+        // let resMrps = await con.run(SELECT.from('NetProductionSet'));
+        // let x = resMrps;
+        // //CPUDT
+        // //return list
     });
 
 

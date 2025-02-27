@@ -58,6 +58,17 @@
           "requestTimeout": 300000
         }
       },
+      "searchHelpNet": {
+        "kind": "odata-v2",
+        "model": "srv/external/searchHelpNet",
+        "csrf": true,
+        "csrfInBatch": true,
+        "credentials": {
+          "destination": "B3B_SA_QAS",
+          "path": "/sap/opu/odata/sap/ZPP_PRODUCTION_FACTS_SRV",
+          "requestTimeout": 300000
+        }
+      },
       "connectivity": true,
       "destinations": true,
       "[production]": {

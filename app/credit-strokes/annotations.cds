@@ -134,7 +134,8 @@ annotate service.MESStrokes with @(
         }
         ],
         Visualizations: ['@UI.LineItem']
-    }
+    },
+    
 
 );
 

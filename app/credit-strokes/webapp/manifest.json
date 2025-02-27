@@ -36,7 +36,7 @@
         "mes-strokes-manage": {
           "semanticObject": "creditstrokes",
           "action": "manage",
-          "title": "{{flpTitle}}",
+          "title": "Strokes/Cups Management (MES x SAP Interface)",
           "signature": {
             "parameters": {},
             "additionalParameters": "allowed"
@@ -62,6 +62,7 @@
     }
   },
   "sap.ui5": {
+    
     "flexEnabled": true,
     "dependencies": {
       "minUI5Version": "1.131.1",
