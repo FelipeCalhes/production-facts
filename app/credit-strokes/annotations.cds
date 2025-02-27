@@ -134,7 +134,16 @@ annotate service.MESStrokes with @(
         }
         ],
         Visualizations: ['@UI.LineItem']
-    }
+    },
+    UI.HeaderInfo : {
+        TypeName : 'Strokes/Cups Management (MES x SAP Interface)',
+        TypeNamePlural : '',
+        Title : {
+            $Type : 'UI.DataField',
+            Value : center,
+        },
+    },
+    
 
 );
 

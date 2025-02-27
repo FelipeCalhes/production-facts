@@ -36,7 +36,7 @@
                 "mes-strokes-manage": {
                     "semanticObject": "creditstrokes",
                     "action": "manage",
-                    "title": "{{flpTitle}}",
+                    "title": "Strokes/Cups Management (MES x SAP Interface)",
                     "signature": {
                         "parameters": {},
                         "additionalParameters": "allowed"
@@ -152,6 +152,7 @@
                     "type": "Component",
                     "id": "MESStrokesObjectPage",
                     "name": "sap.fe.templates.ObjectPage",
+                    "title": "Strokes/Cups Management (MES x SAP Interface)",
                     "options": {
                         "settings": {
                             "editableHeaderContent": false,

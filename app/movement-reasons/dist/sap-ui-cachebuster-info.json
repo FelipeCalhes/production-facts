@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "Component-preload.js.map": 1740662548141,
   "i18n/i18n_en.properties": 1740661306267,
   "i18n/i18n_es.properties": 1740661306268,
@@ -9,4 +10,16 @@
   "Component-preload.js": 1740662548141,
   "i18n/i18n.properties": 1740661306267,
   "index.html": 1740054015649
+=======
+  "i18n/i18n.properties": 1740511446871,
+  "i18n/i18n_es.properties": 1740511462191,
+  "i18n/i18n_en.properties": 1740511481751,
+  "Component.js": 1739898927023,
+  "manifest.json": 1740681700719,
+  "Component-dbg.js": 1739898927023,
+  "Component.js.map": 1740681700845,
+  "Component-preload.js": 1740681700959,
+  "Component-preload.js.map": 1740681700959,
+  "index.html": 1739898927023
+>>>>>>> 4b847507e488395333e6dff7e360c1c14f9cb8ae
 }

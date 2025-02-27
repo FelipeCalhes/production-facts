@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "ext/controller/CustomActions-dbg.js": 1740148135798,
   "i18n/i18n_es.properties": 1740661306262,
   "i18n/i18n_en.properties": 1740661306262,
@@ -13,4 +14,20 @@
   "Component-preload.js": 1740662535750,
   "Component-preload.js.map": 1740662535750,
   "index.html": 1740661306263
+=======
+  "Component.js.map": 1740681689173,
+  "i18n/i18n_es.properties": 1740680833029,
+  "i18n/i18n_en.properties": 1740674969449,
+  "i18n/i18n_pt.properties": 1740674450409,
+  "manifest.json": 1740681689017,
+  "ext/controller/CustomActions.js": 1740156432417,
+  "Component.js": 1738348566322,
+  "Component-dbg.js": 1738348566322,
+  "i18n/i18n.properties": 1740674453269,
+  "ext/controller/CustomActions-dbg.js": 1740156432417,
+  "ext/controller/CustomActions.js.map": 1740681689173,
+  "Component-preload.js": 1740681689287,
+  "Component-preload.js.map": 1740681689287,
+  "index.html": 1740674455199
+>>>>>>> 4b847507e488395333e6dff7e360c1c14f9cb8ae
 }

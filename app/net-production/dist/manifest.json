@@ -117,13 +117,6 @@
                             "initialLoad": "Enabled",
                             "contextPath": "/NetProductions",
                             "variantManagement": "Page",
-                            "navigation": {
-                                "NetProductions": {
-                                    "detail": {
-                                        "route": "NetProductionsObjectPage"
-                                    }
-                                }
-                            },
                             "controlConfiguration": {
                                 "@com.sap.vocabularies.UI.v1.LineItem": {
                                     "tableSettings": {
