@@ -97,7 +97,7 @@ module.exports = cds.service.impl(async function() {
             minute: '2-digit',
             second: '2-digit',
             timeZone: 'America/Sao_Paulo'
-        }).format(currentDate);-
+        }).format(currentDate);
         list.data.lastChangeTime = formattedTime;
 
         if (list.data.changeReason_description == null || list.data.changeReason_description.length == 0) {
