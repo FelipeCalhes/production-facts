@@ -4,9 +4,57 @@ module.exports = cds.service.impl(async function() {
     const { MESStrokes, MESStrokes_insert, Plant, MRPPlanner, ChangeReasons, MESInterfaces, MovementReasons, NetProductions } = this.entities;
     const messaging = await cds.connect.to('messaging')
     const log = cds.log('ProductionFactsService')
-    messaging.on('ball/emdev/ecc-cons/productionfacts', async (msg) => { 
+    messaging.on('productionfacts', async (msg) => { 
         log.info('Received a message from topic ball/emdev/ecc-cons/productionfacts')
-
+        let con = await cds.connect.to('searchHelp');
+        let netSap = await con.run(SELECT.from('NetProductionSet').where({
+                                    Mblnr : msg.data.objectId.substring(0, 10),
+                                    Mjahr : msg.data.objectId.substring(10) }))
+        if (resMrps.length > 0) {
+            let netProduction = [];
+            for (const entry of netSap) {
+                netProduction.push({
+                    centro: entry.Werks,
+                    planejadorMrp: entry.Dispo,
+                    dataLancamento: entry.Budat,
+                    centroTrabalho: entry.Arbpl,
+                    numeroMaterial: entry.Matnr,
+                    goal: entry.Goal,
+                    tendency: entry.Tende,
+                    spoilage: entry.Spoil,
+                    hfiGenerated: entry.Hfige,
+                    finishedGood: entry.Fgood,
+                    average: entry.Avera,
+                    totalProduction: entry.Totpr,
+                    productionCupMinster: entry.Prcup,
+                    hfiGeneratedPercentage: entry.Pchfi,
+                    hfiReleasedPlant: entry.Hrlpl,
+                    hfiReleasedOtherPlant: entry.Hrlop,
+                    scrapPlantNoRespons: entry.Spnrp,
+                    scrapPlantRespons: entry.Scplr,
+                    scrapOtherPlant: entry.Scopl,
+                    totalReleased: entry.Totre,
+                    eorGeneration: entry.Eorge,
+                    eorReleased: entry.Eorrl,
+                    eorHfiGeneration: entry.Eorhi,
+                    eorBalance: entry.Eorbl,
+                    plantResponsibilityReport: entry.RespPlan,
+                    inventory: entry.Invent,
+                    shellEndsProduction: entry.Bendpr,
+                    shellEndsScrap: entry.Bendsc,
+                    insertionDate: entry.ZpmGravd,
+                    insertionTime: entry.ZpmGravh,
+                    modificationDate: entry.ZpmModfd,
+                    modificationTime: entry.ZpmModfh,
+                    text: entry.Texto,
+                    hfiGeneratedNoResp: entry.HfigeNo,
+                    hfiReleasedPlantNoResp: entry.HrlplNo,
+                    mrpGroup: entry.Disgr
+                    })    
+                }
+        
+            await cds.run(INSERT.into(NetProductions).entries(netProduction));
+        }
     })
     //MesStrokes
     this.after('READ', [MESStrokes, 'ProductionFactsService.MESStrokes.drafts'], async (list, req) => {
