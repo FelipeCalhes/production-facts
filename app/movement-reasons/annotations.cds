@@ -29,7 +29,7 @@ annotate service.MovementReasons with @(
         {
             $Type : 'UI.ReferenceFacet',
             ID : 'GeneratedFacet1',
-            Label : '{@i18n>General_Information}',
+            //Label : '{@i18n>General_Information}',
             Target : '@UI.FieldGroup#GeneratedGroup',
         },
     ],
@@ -55,4 +55,13 @@ annotate service.MovementReasons with @(
             Label : '{@i18n>H_S}',
         },
     ],
+    UI.HeaderInfo : {
+        TypeName : 'Plant Responsibility Defects',
+        TypeNamePlural : '',
+        Title : {
+            $Type : 'UI.DataField',
+            Value : mesReason,
+        },
+    },
+
 );

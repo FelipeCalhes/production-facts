@@ -230,7 +230,7 @@ resources:
     parameters:
       service: enterprise-messaging
       service-plan: default
-      path: ./event-mesh.json
+
 parameters:
   deploy_mode: html5-repo
   enable-parallel-deployments: true
