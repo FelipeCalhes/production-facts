@@ -1,27 +1,15 @@
 using ProductionFactsService as service from '../../srv/service';
-annotate service.MovementReasons with @(
+annotate service.MESInterfaces with @(
     UI.FieldGroup #GeneratedGroup : {
         $Type : 'UI.FieldGroupType',
         Data : [
             {
                 $Type : 'UI.DataField',
-                Value : mesReason,
-                Label : '{@i18n>Mes_Reason}',
-            },
-            {
-                $Type : 'UI.DataField',
                 Value : sapReason,
-                Label : '{@i18n>Sap_Reason}',
             },
             {
                 $Type : 'UI.DataField',
                 Value : factResp,
-                Label : '{@i18n>Fact_Resp}',
-            },
-            {
-                $Type : 'UI.DataField',
-                Value : creditoOuDebito,
-                Label : '{@i18n>H_S}',
             },
         ],
     },
@@ -29,30 +17,31 @@ annotate service.MovementReasons with @(
         {
             $Type : 'UI.ReferenceFacet',
             ID : 'GeneratedFacet1',
-            Label : '{@i18n>General_Information}',
+            Label : 'General Information',
             Target : '@UI.FieldGroup#GeneratedGroup',
         },
     ],
     UI.LineItem : [
         {
             $Type : 'UI.DataField',
-            Value : mesReason,
-            Label : '{@i18n>Mes_Reason}',
-        },
-        {
-            $Type : 'UI.DataField',
             Value : sapReason,
-            Label : '{@i18n>Sap_Reason}',
         },
         {
             $Type : 'UI.DataField',
             Value : factResp,
-            Label : '{@i18n>Fact_Resp}',
         },
         {
             $Type : 'UI.DataField',
-            Value : creditoOuDebito,
-            Label : '{@i18n>H_S}',
+            Value : lastChangeBy,
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : lastChangeDate,
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : lastChangeTime,
         },
     ],
 );
+

@@ -46,10 +46,6 @@ modules:
           name: creditstrokes
           target-path: resources/
         - artifacts:
-            - mesinterfacemesinterface.zip
-          name: mes-interface
-          target-path: resources/
-        - artifacts:
             - netproduction.zip
           name: netproduction
           target-path: resources/
@@ -102,17 +98,6 @@ modules:
           existing_destinations_policy: update
     build-parameters:
       no-source: true
-  - name: mes-interface
-    type: html5
-    path: app/mes-interface
-    build-parameters:
-      build-result: dist
-      builder: custom
-      commands:
-        - npm install
-        - npm run build:cf
-      supported-platforms:
-        []
   - name: netproduction
     type: html5
     path: app/net-production
@@ -164,13 +149,6 @@ resources:
                 HTML5.DynamicDestination: true
                 HTML5.ForwardAuthToken: true
                 Name: credit-strokes
-                ProxyType: Internet
-                Type: HTTP
-                URL: https://~{srv-api/srv-url}
-              - Authentication: NoAuthentication
-                HTML5.DynamicDestination: true
-                HTML5.ForwardAuthToken: true
-                Name: mes-interface
                 ProxyType: Internet
                 Type: HTTP
                 URL: https://~{srv-api/srv-url}
@@ -230,7 +208,6 @@ resources:
     parameters:
       service: enterprise-messaging
       service-plan: default
-      path: ./event-mesh.json
 parameters:
   deploy_mode: html5-repo
   enable-parallel-deployments: true

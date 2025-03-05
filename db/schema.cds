@@ -21,14 +21,12 @@ entity changeReasons {
     key description : String(40);
 }
 
-entity MESInterfaces {
-    key mesReason   : String(5);
-    sapReason       : String(10);
+entity MESInterfaces{
+    key sapReason       : String(4);
     factResp        : Boolean;
-    creditoOuDebito : String enum {
-                                H = 'Crédito';
-                                S = 'Débito';
-                            };
+    lastChangeDate              : Date;
+    lastChangeTime              : Time;
+    lastChangeBy                : String(250);
 }
 
 entity MovementReasons {
@@ -44,11 +42,14 @@ entity MovementReasons {
 
 entity NetProductions {
     //key mandante                  : String(3);      // Mandante
-    key centro                    : String(4);      // Centro
-    key planejadorMrp             : String(3);      // Planejador MRP
+    key MaterialDocument           : String(10);     // Documento de Material
+    key MaterialDocumentYear       : String(4);      // Ano do Documento de Material
+    key MaterialDocumentItem       : String(6);      // Item do Documento de Material
+    centro                    : String(4);      // Centro
+    planejadorMrp             : String(3);      // Planejador MRP
     dataLancamento                : Date;           // Data de lançamento no documento
-    key centroTrabalho            : String(8);      // Centro de trabalho
-    key numeroMaterial            : String(18);     // Nº do material
+    centroTrabalho            : String(8);      // Centro de trabalho
+    numeroMaterial            : String(18);     // Nº do material
     goal                          : Decimal(13,3);  // Goal
     tendency                      : Decimal(13,3);  // Tendency
     spoilage                      : Decimal(9,2);   // Spoilage
@@ -80,4 +81,5 @@ entity NetProductions {
     hfiGeneratedNoResp            : Decimal(13,3);  // HFI Generated No Resp
     hfiReleasedPlantNoResp        : Decimal(13,3);  // HFI Released Plant No Resp
     mrpGroup                      : String(4);      // Grupo MRP
+    grund                         : String(6);      // Grund
 } 

@@ -11,18 +11,18 @@
     "@sap-cloud-sdk/resilience": "3.25.0",
     "@sap/cds": "^8",
     "@sap/hana-client": "2.23.24",
+    "@sap/xb-msg-amqp-v100": "^0.9.58",
     "@sap/xssec": "^4",
     "express": "^4",
-    "soap": "^1.1.7",
-    "@sap/xb-msg-amqp-v100": "^0.9.58"
+    "soap": "^1.1.7"
   },
   "devDependencies": {
     "@cap-js/cds-types": "^0.7.0",
     "@cap-js/sqlite": "^1",
     "@sap/cds-dk": "^8",
-    "@sap/ux-specification": "1.124.7",
-    "rimraf": "^5.0.5",
-    "mbt": "^1.2.29"
+    "@sap/ux-specification": "1.124.11",
+    "mbt": "^1.2.29",
+    "rimraf": "^5.0.5"
   },
   "scripts": {
     "start": "cds-serve",
@@ -41,7 +41,8 @@
     "app/net-production",
     "app/movement-reasons",
     "app/movement-reasons",
-    "app/change-reasons"
+    "app/change-reasons",
+    "app/movement-reasons"
   ],
   "cds": {
     "fiori": {

@@ -1,26 +1,26 @@
 ## Application Details
 |               |
 | ------------- |
-|**Generation Date and Time**<br>Tue Feb 18 2025 14:15:26 GMT-0300 (Brasilia Standard Time)|
+|**Generation Date and Time**<br>Fri Feb 28 2025 17:09:45 GMT-0300 (Brasilia Standard Time)|
 |**App Generator**<br>@sap/generator-fiori-elements|
-|**App Generator Version**<br>1.16.2|
+|**App Generator Version**<br>1.14.4|
 |**Generation Platform**<br>Visual Studio Code|
 |**Template Used**<br>List Report Page V4|
 |**Service Type**<br>Local Cap|
 |**Service URL**<br>http://localhost:4004/odata/v4/production-facts/|
 |**Module Name**<br>movement-reasons|
-|**Application Title**<br>Movement Reasons - MES Interface|
+|**Application Title**<br>Movement Reason x Plant Responsibility|
 |**Namespace**<br>|
 |**UI5 Theme**<br>sap_horizon|
-|**UI5 Version**<br>1.132.1|
+|**UI5 Version**<br>1.133.0|
 |**Enable Code Assist Libraries**<br>False|
 |**Enable TypeScript**<br>False|
 |**Add Eslint configuration**<br>False|
-|**Main Entity**<br>MovementReasons|
+|**Main Entity**<br>MESInterfaces|
 
 ## movement-reasons
 
-An SAP Fiori application.
+
 
 ### Starting the generated app
 

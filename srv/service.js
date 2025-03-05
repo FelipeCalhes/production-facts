@@ -14,46 +14,50 @@ module.exports = cds.service.impl(async function() {
             let netProduction = [];
             for (const entry of netSap) {
                 netProduction.push({
+                    MaterialDocument: entry.Mblnr,
+                    MaterialDocumentYear: entry.Mjahr,
+                    MaterialDocumentItem: entry.Zeile,
                     centro: entry.Werks,
                     planejadorMrp: entry.Dispo,
                     dataLancamento: entry.Budat,
-                    centroTrabalho: entry.Arbpl,
+                    centroTrabalho: entry.Arbpl, // Não existe no SAP
                     numeroMaterial: entry.Matnr,
-                    goal: entry.Goal,
-                    tendency: entry.Tende,
+                    goal: entry.Goal, // ok
+                    tendency: entry.Tende, 
                     spoilage: entry.Spoil,
-                    hfiGenerated: entry.Hfige,
-                    finishedGood: entry.Fgood,
+                    hfiGenerated: entry.Hfige, // validar pelo GRUND FactoryResponsability = true
+                    finishedGood: entry.Fgood, // ok
                     average: entry.Avera,
-                    totalProduction: entry.Totpr,
-                    productionCupMinster: entry.Prcup,
-                    hfiGeneratedPercentage: entry.Pchfi,
-                    hfiReleasedPlant: entry.Hrlpl,
-                    hfiReleasedOtherPlant: entry.Hrlop,
-                    scrapPlantNoRespons: entry.Spnrp,
-                    scrapPlantRespons: entry.Scplr,
-                    scrapOtherPlant: entry.Scopl,
-                    totalReleased: entry.Totre,
-                    eorGeneration: entry.Eorge,
-                    eorReleased: entry.Eorrl,
-                    eorHfiGeneration: entry.Eorhi,
-                    eorBalance: entry.Eorbl,
-                    plantResponsibilityReport: entry.RespPlan,
-                    inventory: entry.Invent,
-                    shellEndsProduction: entry.Bendpr,
-                    shellEndsScrap: entry.Bendsc,
-                    insertionDate: entry.ZpmGravd,
-                    insertionTime: entry.ZpmGravh,
-                    modificationDate: entry.ZpmModfd,
-                    modificationTime: entry.ZpmModfh,
-                    text: entry.Texto,
-                    hfiGeneratedNoResp: entry.HfigeNo,
-                    hfiReleasedPlantNoResp: entry.HrlplNo,
-                    mrpGroup: entry.Disgr
+                    totalProduction: entry.Totpr, // ok
+                    productionCupMinster: entry.Prcup, // MES Strokes ncoup / 1000
+                    hfiGeneratedPercentage: (Number.parseInt(entry.Totpr) > 0)? ( entry.Hfige / entry.Totpr ) * 100: 0, // rever hfige
+                    hfiReleasedPlant: entry.Hrlpl, //ok
+                    hfiReleasedOtherPlant: entry.Hrlop, // validar pelo GRUND FactoryResponsability = true
+                    scrapPlantNoRespons: entry.Spnrp, // validar pelo GRUND FactoryResponsability = false
+                    scrapPlantRespons: entry.Scplr, // validar pelo GRUND FactoryResponsability = true
+                    scrapOtherPlant: entry.Scopl, // ok
+                    totalReleased: entry.Totre, // ok
+                    eorGeneration: entry.Eorge, //ok
+                    eorReleased: entry.Eorrl, //ok
+                    eorHfiGeneration: entry.Eorhi, // ok
+                    eorBalance: entry.Eorbl, //ok
+                    plantResponsibilityReport: entry.RespPlan, // validar pelo GRUND FactoryResponsability = true
+                    inventory: entry.Invent, //ok
+                    shellEndsProduction: entry.Bendpr, //ok
+                    shellEndsScrap: entry.Bendsc, // ok
+                    insertionDate: new Date().toISOString().substring(0, 10),
+                    insertionTime: new Date().toISOString().substring(11, 19),
+                    //modificationDate: entry.ZpmModfd,
+                    //modificationTime: entry.ZpmModfh,
+                    //text: entry.Texto,
+                    //hfiGeneratedNoResp: entry.HfigeNo,
+                    //hfiReleasedPlantNoResp: entry.HrlplNo,
+                    mrpGroup: entry.Disgr,
+                    grund: entry.Grund,
                     })    
                 }
         
-            await cds.run(INSERT.into(NetProductions).entries(netProduction));
+            await cds.run(UPSERT.into(NetProductions).entries(netProduction));
         }
     })
     //MesStrokes
@@ -85,7 +89,13 @@ module.exports = cds.service.impl(async function() {
         return list
     });
 
-    this.on('READ', ['ProductionFactsService.MESStrokes.drafts', 'ProductionFactsService.ChangeReasons.drafts'], async (req) => {
+    this.on('READ', ['ProductionFactsService.MovReason'], async (req) => {
+
+    });
+
+    this.on('READ', ['ProductionFactsService.MESStrokes.drafts', 
+        'ProductionFactsService.ChangeReasons.drafts', 
+        'ProductionFactsService.MESInterfaces.drafts'], async (req) => {
         //console.log("ooooooolaaaaaaaa");
         //console.log(req);
         if(req.subject.ref[0].where){
@@ -167,26 +177,9 @@ module.exports = cds.service.impl(async function() {
         return (req.data)
     })
 
-    //Rascunho de Movement-Reasons
-    this.before('UPDATE', [MESInterfaces], async (list, req) => {
-        if (list.data && list.data.creditoOuDebito) {
-            list.data.creditoOuDebito = list.data.creditoOuDebito.toUpperCase();
-            if (list.data.creditoOuDebito != 'H' && list.data.creditoOuDebito != 'S') {
-                list.reject(400, 'Digite H para crédito ou S para débito');
-            }
-        }
-        
-    });
-
     //Movement-Reasons
     this.before('UPDATE', [MovementReasons, 'ProductionFactsService.MovementReasons.drafts'], async (list, req) => {
-        if (list.data && list.data.creditoOuDebito) {
-
-            list.data.creditoOuDebito = list.data.creditoOuDebito.toUpperCase();
-            if (list.data.creditoOuDebito != 'H' && list.data.creditoOuDebito != 'S') {
-                list.reject(400, 'Digite H para crédito ou S para débito');
-            }
-        }
+        
         
     });
 

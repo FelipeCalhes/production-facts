@@ -1,4 +1,4 @@
-/* checksum : 286717bc90da0dd8e69c4720e204580e */
+/* checksum : 3e242771f7c59a915e1cda90eddb94a8 */
 @cds.external : true
 @m.IsDefaultEntityContainer : 'true'
 @sap.supported.formats : 'atom json xlsx'
@@ -317,6 +317,13 @@ entity searchHelp.NetProductionSet {
   @sap.sortable : 'false'
   @sap.filterable : 'false'
   Disgr : String(4);
+  @sap.unicode : 'false'
+  @sap.label : 'SAP Reason'
+  @sap.creatable : 'false'
+  @sap.updatable : 'false'
+  @sap.sortable : 'false'
+  @sap.filterable : 'false'
+  Grund : String(6);
 };
 
 @cds.external : true
@@ -346,5 +353,40 @@ entity searchHelp.MRPPlanner {
   @sap.sortable : 'false'
   @sap.filterable : 'false'
   description : String(18) not null;
+};
+
+@cds.external : true
+@cds.persistence.skip : true
+@sap.creatable : 'false'
+@sap.updatable : 'false'
+@sap.deletable : 'false'
+@sap.pageable : 'false'
+@sap.addressable : 'false'
+@sap.content.version : '1'
+entity searchHelp.MovReason {
+  @sap.unicode : 'false'
+  @sap.creatable : 'false'
+  @sap.updatable : 'false'
+  @sap.sortable : 'false'
+  @sap.filterable : 'false'
+  key MovType : String(3) not null;
+  @sap.unicode : 'false'
+  @sap.creatable : 'false'
+  @sap.updatable : 'false'
+  @sap.sortable : 'false'
+  @sap.filterable : 'false'
+  key Language : String(1) not null;
+  @sap.unicode : 'false'
+  @sap.creatable : 'false'
+  @sap.updatable : 'false'
+  @sap.sortable : 'false'
+  @sap.filterable : 'false'
+  key MovementReason : String(4) not null;
+  @sap.unicode : 'false'
+  @sap.creatable : 'false'
+  @sap.updatable : 'false'
+  @sap.sortable : 'false'
+  @sap.filterable : 'false'
+  ReasonDescription : String(20);
 };
 

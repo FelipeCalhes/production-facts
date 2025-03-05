@@ -10,7 +10,7 @@ sap.ui.define([
             opaTest("Start application", function (Given, When, Then) {
                 Given.iStartMyApp();
 
-                Then.onTheMovementReasonsList.iSeeThisPage();
+                Then.onTheMESInterfacesList.iSeeThisPage();
 
             });
 
@@ -18,12 +18,12 @@ sap.ui.define([
             opaTest("Navigate to ObjectPage", function (Given, When, Then) {
                 // Note: this test will fail if the ListReport page doesn't show any data
                 
-                When.onTheMovementReasonsList.onFilterBar().iExecuteSearch();
+                When.onTheMESInterfacesList.onFilterBar().iExecuteSearch();
                 
-                Then.onTheMovementReasonsList.onTable().iCheckRows();
+                Then.onTheMESInterfacesList.onTable().iCheckRows();
 
-                When.onTheMovementReasonsList.onTable().iPressRow(0);
-                Then.onTheMovementReasonsObjectPage.iSeeThisPage();
+                When.onTheMESInterfacesList.onTable().iPressRow(0);
+                Then.onTheMESInterfacesObjectPage.iSeeThisPage();
 
             });
 

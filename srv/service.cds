@@ -30,19 +30,20 @@ service ProductionFactsService {
         
     }
 
+
+
     entity Plant      as projection on sh.Plant;
     entity MRPPlanner as projection on sh.MRPPlanner;
 
     entity ChangeReasons as select from db.changeReasons;
 
-
-    entity MESInterface as projection on db.MESInterfaces;
-
-    entity MESInterfaces as select from  MESInterface {
-        key mesReason,
-        sapReason,
+    entity MESInterfaces as select from  db.MESInterfaces {
+        key sapReason,
         factResp,
-        creditoOuDebito
+        lastChangeBy,
+        lastChangeDate,
+        lastChangeTime,
+        _movReasons: association [1..1] to sh.MovReason on _movReasons.MovementReason = $self.sapReason and _movReasons.MovType = '344'
     }
 
     //Movement-Reasons

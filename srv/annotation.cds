@@ -90,17 +90,11 @@ annotate srv.ChangeReasons with @odata.draft.enabled {
 }
 
 annotate srv.MESInterfaces with @odata.draft.enabled {
-    @title: '{i18n>Mes_Reason}'
-    mesReason;
-
     @title: '{i18n>Sap_Reason}'
     sapReason;
 
     @title: '{i18n>Fact_Resp}'
     factResp;
-
-    @title: '{i18n>H_S}'
-    creditoOuDebito;
 }
 //Movement-Reasons
 annotate srv.MovementReasons with @odata.draft.enabled {

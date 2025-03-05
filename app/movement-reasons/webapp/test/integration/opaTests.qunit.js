@@ -2,10 +2,10 @@ sap.ui.require(
     [
         'sap/fe/test/JourneyRunner',
         'movementreasons/test/integration/FirstJourney',
-		'movementreasons/test/integration/pages/MovementReasonsList',
-		'movementreasons/test/integration/pages/MovementReasonsObjectPage'
+		'movementreasons/test/integration/pages/MESInterfacesList',
+		'movementreasons/test/integration/pages/MESInterfacesObjectPage'
     ],
-    function(JourneyRunner, opaJourney, MovementReasonsList, MovementReasonsObjectPage) {
+    function(JourneyRunner, opaJourney, MESInterfacesList, MESInterfacesObjectPage) {
         'use strict';
         var JourneyRunner = new JourneyRunner({
             // start index.html in web folder
@@ -16,8 +16,8 @@ sap.ui.require(
         JourneyRunner.run(
             {
                 pages: { 
-					onTheMovementReasonsList: MovementReasonsList,
-					onTheMovementReasonsObjectPage: MovementReasonsObjectPage
+					onTheMESInterfacesList: MESInterfacesList,
+					onTheMESInterfacesObjectPage: MESInterfacesObjectPage
                 }
             },
             opaJourney.run
