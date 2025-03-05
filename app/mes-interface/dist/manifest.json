@@ -1,7 +1,7 @@
 {
-    "_version": "1.59.0",
+    "_version": "1.65.0",
     "sap.app": {
-        "id": "creditstrokes",
+        "id": "mesinterface.mesinterface",
         "type": "application",
         "i18n": "i18n/i18n.properties",
         "applicationVersion": {
@@ -12,8 +12,8 @@
         "resources": "resources.json",
         "sourceTemplate": {
             "id": "@sap/generator-fiori:lrop",
-            "version": "1.14.4",
-            "toolsId": "5e8dca12-dd6a-4996-b341-9e677fa9318b"
+            "version": "1.16.2",
+            "toolsId": "47c623c5-002c-42a0-bbc8-93f38e4112d9"
         },
         "dataSources": {
             "mainService": {
@@ -26,17 +26,11 @@
             }
         },
         "crossNavigation": {
-            "outbounds": {
-                "reasons-navigation": {
-                    "semanticObject": "changereasons",
-                    "action": "manage"
-                }
-            },
             "inbounds": {
-                "mes-strokes-manage": {
-                    "semanticObject": "creditstrokes",
+                "mes-interface-manage": {
+                    "semanticObject": "mesinterface",
                     "action": "manage",
-                    "title": "Strokes/Cups (MES x SAP Interface)",
+                    "title": "{{flpTitle}}",
                     "signature": {
                         "parameters": {},
                         "additionalParameters": "allowed"
@@ -64,11 +58,10 @@
     "sap.ui5": {
         "flexEnabled": true,
         "dependencies": {
-            "minUI5Version": "1.131.1",
+            "minUI5Version": "1.132.1",
             "libs": {
                 "sap.m": {},
                 "sap.ui.core": {},
-                "sap.ushell": {},
                 "sap.fe.templates": {}
             }
         },
@@ -80,7 +73,7 @@
             "i18n": {
                 "type": "sap.ui.model.resource.ResourceModel",
                 "settings": {
-                    "bundleName": "creditstrokes.i18n.i18n"
+                    "bundleName": "mesinterface.mesinterface.i18n.i18n"
                 }
             },
             "": {
@@ -105,58 +98,49 @@
             "routes": [
                 {
                     "pattern": ":?query:",
-                    "name": "MESStrokesList",
-                    "target": "MESStrokesList"
+                    "name": "MESInterfacesList",
+                    "target": "MESInterfacesList"
                 },
                 {
-                    "pattern": "MESStrokes({key}):?query:",
-                    "name": "MESStrokesObjectPage",
-                    "target": "MESStrokesObjectPage"
+                    "pattern": "MESInterfaces({key}):?query:",
+                    "name": "MESInterfacesObjectPage",
+                    "target": "MESInterfacesObjectPage"
                 }
             ],
             "targets": {
-                "MESStrokesList": {
+                "MESInterfacesList": {
                     "type": "Component",
-                    "id": "MESStrokesList",
+                    "id": "MESInterfacesList",
                     "name": "sap.fe.templates.ListReport",
                     "options": {
                         "settings": {
-                            "initialLoad": "Enabled",
-                            "contextPath": "/MESStrokes",
+                            "contextPath": "/MESInterfaces",
                             "variantManagement": "Page",
                             "navigation": {
-                                "MESStrokes": {
+                                "MESInterfaces": {
                                     "detail": {
-                                        "route": "MESStrokesObjectPage"
+                                        "route": "MESInterfacesObjectPage"
                                     }
                                 }
                             },
                             "controlConfiguration": {
                                 "@com.sap.vocabularies.UI.v1.LineItem": {
                                     "tableSettings": {
-                                        "type": "GridTable"
-                                    },
-                                    "actions": {
-                                        "reasons": {
-                                            "press": "creditstrokes.ext.controller.CustomActions.onReasons",
-                                            "text": "{i18n>reasons}",
-                                            "requiresSelection": false
-                                        }
+                                        "type": "ResponsiveTable"
                                     }
                                 }
                             }
                         }
                     }
                 },
-                "MESStrokesObjectPage": {
+                "MESInterfacesObjectPage": {
                     "type": "Component",
-                    "id": "MESStrokesObjectPage",
+                    "id": "MESInterfacesObjectPage",
                     "name": "sap.fe.templates.ObjectPage",
-                    "title": "Strokes/Cups (MES x SAP Interface)",
                     "options": {
                         "settings": {
                             "editableHeaderContent": false,
-                            "contextPath": "/MESStrokes"
+                            "contextPath": "/MESInterfaces"
                         }
                     }
                 }

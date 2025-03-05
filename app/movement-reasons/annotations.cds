@@ -17,7 +17,7 @@ annotate service.MESInterfaces with @(
         {
             $Type : 'UI.ReferenceFacet',
             ID : 'GeneratedFacet1',
-            Label : 'General Information',
+            //Label : '{@i18n>General_Information}',
             Target : '@UI.FieldGroup#GeneratedGroup',
         },
     ],
@@ -40,8 +40,18 @@ annotate service.MESInterfaces with @(
         },
         {
             $Type : 'UI.DataField',
-            Value : lastChangeTime,
+            Value : creditoOuDebito,
+            Label : '{@i18n>H_S}',
         },
     ],
+    UI.HeaderInfo : {
+        TypeName : 'Plant Responsibility Defects',
+        TypeNamePlural : '',
+        Title : {
+            $Type : 'UI.DataField',
+            Value : mesReason,
+        },
+    },
+
 );
 
