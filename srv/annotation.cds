@@ -111,12 +111,15 @@ annotate srv.MESInterfaces with @odata.draft.enabled {
     factResp;
 
     @title: '{i18n>Alterado_Por}'
+    @readonly
     lastChangeBy;
 
     @title: '{i18n>Data_da_Ultima_Mudanca}'
+    @readonly
     lastChangeDate;
 
     @title: '{i18n>Hora_da_Ultima_Mudanca}'
+    @readonly
     lastChangeTime;
 }
 

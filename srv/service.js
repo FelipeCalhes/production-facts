@@ -100,10 +100,21 @@ module.exports = cds.service.impl(async function () {
             } else return []
         });
 
+    // this.before('READ', [Plant, MRPPlanner, MovReason], async (req) => {
+    //         const con = await cds.connect.to('searchHelp')
+    //         return con.run(req.query)
+    //     });
 
     this.on('READ', [Plant, MRPPlanner, MovReason], async (req) => {
-        const con = await cds.connect.to('searchHelp')
-        return con.run(req.query)
+        const con = await cds.connect.to('searchHelp');
+        const userLanguage = req.user.language || 'PT'; 
+        //req.query.SELECT.columns = [{ ref: ['MovementReason'] }];
+        //req.query.SELECT.distinct = true;
+        req.query.where('Language =', userLanguage)//.distinct('MovementReason');
+        
+
+        //req.query.distinct('MovementReason');
+        return con.run(req.query);
     });
 
         //PLANO B
@@ -230,6 +241,34 @@ module.exports = cds.service.impl(async function () {
 
         return (req.data)
     })
+    //this.after('READ', [MESInterfaces, 'ProductionFactsService.MESInterfaces.drafts'], async (list, req) => {
+        // const select = req.query.SELECT;
+        // let con = await cds.connect.to('searchHelp');
+        // if (!select.columns) return list;
+        // let expandMrp = select.columns.findIndex(
+        //     ({ expand, ref }) => expand && ref[0] === "_mrpController"
+        // );
+        // let resMrps;
+        // if (expandMrp > 0) {
+        //     let mrps = list.map(l => l.mrpController)
+        //     resMrps = con.run(SELECT.from(MovReason).where({ mrpPlanner: mrps, MovType: '344' }));
+        // } else {
+        //     resMrps = []
+        // }
+
+        // if (resMrps instanceof Promise) resMrps = await resMrps;
+
+        // list.forEach(line => {
+        //     resMrps.find(el => {
+        //         if (line.mrpController === el.mrpPlanner && line.center === el.plant) {
+        //             line._mrpController = el
+        //         }
+        //     })
+        // })
+
+        // return list
+
+    //});
 
     // this.after('READ', [MESInterfaces, 'ProductionFactsService.MESInterfaces.drafts'], async (list, req) => {
     //     const select = req.query.SELECT;
@@ -270,9 +309,14 @@ module.exports = cds.service.impl(async function () {
             timeZone: 'America/Sao_Paulo'
         }).format(currentDate);
         list.data.lastChangeTime = formattedTime;
+
+        if (list.data.factResp == null || list.data.factResp == 0) {
+            list.data.factResp = false;
+        }
     });
 
     this.after('CREATE', [MESInterfaces], async (list, req) => {
+
     });
 
     this.before('UPDATE', [MESInterfaces, 'ProductionFactsService.MESInterfaces.drafts'], async (list, req) => {
@@ -287,6 +331,10 @@ module.exports = cds.service.impl(async function () {
             timeZone: 'America/Sao_Paulo'
         }).format(currentDate);
         list.data.lastChangeTime = formattedTime;
+
+        if (list.data.factResp == null || list.data.factResp == 0) {
+            list.data.factResp = false;
+        }
     });
 
     //NetProductions
