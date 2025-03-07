@@ -91,11 +91,35 @@ annotate srv.ChangeReasons with @odata.draft.enabled {
 
 annotate srv.MESInterfaces with @odata.draft.enabled {
     @title: '{i18n>Sap_Reason}'
+    @Common.ValueList: {
+        CollectionPath: 'MovReason',
+        Parameters    : [
+            {
+                $Type            : 'Common.ValueListParameterInOut',
+                LocalDataProperty: 'sapReason',
+                ValueListProperty: 'MovementReason',
+            },
+            {
+                $Type            : 'Common.ValueListParameterDisplayOnly',
+                ValueListProperty: 'ReasonDescription'
+            }
+        ]
+    }
     sapReason;
 
     @title: '{i18n>Fact_Resp}'
     factResp;
+
+    @title: '{i18n>Alterado_Por}'
+    lastChangeBy;
+
+    @title: '{i18n>Data_da_Ultima_Mudanca}'
+    lastChangeDate;
+
+    @title: '{i18n>Hora_da_Ultima_Mudanca}'
+    lastChangeTime;
 }
+
 //Movement-Reasons
 annotate srv.MovementReasons with @odata.draft.enabled {
     @title: '{i18n>Mes_Reason}'
@@ -110,7 +134,6 @@ annotate srv.MovementReasons with @odata.draft.enabled {
     @title: '{i18n>H_S}'
     creditoOuDebito;
 }
-
 
 //Net-Production
 annotate srv.NetProductions { //@readonly { //@odata.draft.enabled {
@@ -263,8 +286,27 @@ Capabilities: {
    },
 });
 
+annotate srv.MESInterfaces with @(
+Capabilities: {
+   NavigationRestrictions : {
+       $Type : 'Capabilities.NavigationRestrictionsType',
+       RestrictedProperties : [
+           {
+               $Type : 'Capabilities.NavigationPropertyRestriction',
+               NavigationProperty : DraftAdministrativeData,
+               FilterRestrictions : {
+                   $Type : 'Capabilities.FilterRestrictionsType',
+    
+                   Filterable : false,
+               },
+           },
+       ],
+   },
+});
+
 //Permitir entrada http sem rascunho
 annotate srv.MESStrokes with @odata.draft.bypass;
+annotate srv.MESInterfaces with @odata.draft.bypass;
 
 annotate srv.NetProductions with @odata.draft.bypass;
 //annotate srv. MovementReasons with @odata.draft.bypass;

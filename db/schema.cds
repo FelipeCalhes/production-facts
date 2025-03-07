@@ -1,6 +1,3 @@
-using { searchHelp as sh } from '../srv/external/searchHelp';
-
-
 namespace production.facts;
 
 entity MESStrokes {

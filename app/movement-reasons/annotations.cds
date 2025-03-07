@@ -11,6 +11,18 @@ annotate service.MESInterfaces with @(
                 $Type : 'UI.DataField',
                 Value : factResp,
             },
+            {
+                $Type : 'UI.DataField',
+                Value : lastChangeBy,
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : lastChangeDate,
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : lastChangeTime,
+            },
         ],
     },
     UI.Facets : [
@@ -20,6 +32,13 @@ annotate service.MESInterfaces with @(
             //Label : '{@i18n>General_Information}',
             Target : '@UI.FieldGroup#GeneratedGroup',
         },
+    ],
+    UI.SelectionFields : [
+        sapReason,
+        factResp,
+        lastChangeBy,
+        lastChangeDate,
+        lastChangeTime,
     ],
     UI.LineItem : [
         {
@@ -40,8 +59,7 @@ annotate service.MESInterfaces with @(
         },
         {
             $Type : 'UI.DataField',
-            Value : creditoOuDebito,
-            Label : '{@i18n>H_S}',
+            Value : lastChangeTime,
         },
     ],
     UI.HeaderInfo : {
@@ -49,9 +67,18 @@ annotate service.MESInterfaces with @(
         TypeNamePlural : '',
         Title : {
             $Type : 'UI.DataField',
-            Value : mesReason,
+            Value : 'Plant Responsibility Defects',
         },
     },
 
 );
+annotate service.MovReason with {
+    MovementReason @Common.Text : {
+        $value : ReasonDescription,
+        ![@UI.TextArrangement] : #TextLast,
+    }
+};
+annotate service.MESInterfaces with {
+    sapReason @Common.Text : _movReasons.ReasonDescription
+};
 

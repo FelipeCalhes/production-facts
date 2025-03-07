@@ -28,9 +28,9 @@
     "crossNavigation": {
       "inbounds": {
         "Mov-reason-maintain": {
-          "semanticObject": "Mov-reason",
+          "semanticObject": "movementreasons",
           "action": "maintain",
-          "title": "{{flpTitle}}",
+          "title": "SAP Moviment Reason x Plant Responsibility (Production KPIs)",
           "signature": {
             "parameters": {},
             "additionalParameters": "allowed"
@@ -138,6 +138,7 @@
           "type": "Component",
           "id": "MESInterfacesObjectPage",
           "name": "sap.fe.templates.ObjectPage",
+          "title": "SAP Moviment Reason x Plant Responsibility (Production KPIs)",
           "options": {
             "settings": {
               "editableHeaderContent": false,
@@ -151,5 +152,9 @@
   "sap.fiori": {
     "registrationIds": [],
     "archeType": "transactional"
+  },
+  "sap.cloud": {
+    "public": true,
+    "service": "production.facts"
   }
 }

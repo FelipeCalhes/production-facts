@@ -34,6 +34,7 @@ service ProductionFactsService {
 
     entity Plant      as projection on sh.Plant;
     entity MRPPlanner as projection on sh.MRPPlanner;
+    entity MovReason as projection on sh.MovReason;
 
     entity ChangeReasons as select from db.changeReasons;
 
@@ -43,7 +44,7 @@ service ProductionFactsService {
         lastChangeBy,
         lastChangeDate,
         lastChangeTime,
-        _movReasons: association [1..1] to sh.MovReason on _movReasons.MovementReason = $self.sapReason and _movReasons.MovType = '344'
+        _movReasons: association [1..1] to sh.MovReason on (_movReasons.MovementReason = $self.sapReason and _movReasons.MovType = '344')
     }
 
     //Movement-Reasons
