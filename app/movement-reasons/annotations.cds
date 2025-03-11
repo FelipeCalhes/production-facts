@@ -9,6 +9,10 @@ annotate service.MESInterfaces with @(
             },
             {
                 $Type : 'UI.DataField',
+                Value : _movReasons.ReasonDescription,
+            },
+            {
+                $Type : 'UI.DataField',
                 Value : factResp,
             },
             {
@@ -35,6 +39,7 @@ annotate service.MESInterfaces with @(
     ],
     UI.SelectionFields : [
         sapReason,
+        _movReasons.ReasonDescription,
         factResp,
         lastChangeBy,
         lastChangeDate,
@@ -44,6 +49,10 @@ annotate service.MESInterfaces with @(
         {
             $Type : 'UI.DataField',
             Value : sapReason,
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : _movReasons.ReasonDescription,
         },
         {
             $Type : 'UI.DataField',
@@ -61,6 +70,7 @@ annotate service.MESInterfaces with @(
             $Type : 'UI.DataField',
             Value : lastChangeTime,
         },
+
     ],
     UI.HeaderInfo : {
         TypeName : 'Plant Responsibility Defects',
@@ -75,10 +85,20 @@ annotate service.MESInterfaces with @(
 annotate service.MovReason with {
     MovementReason @Common.Text : {
         $value : ReasonDescription,
-        ![@UI.TextArrangement] : #TextLast,
+        ![@UI.TextArrangement] : #TextLast
     }
+    // UI.LineItem : {
+    //      {
+    //         $Type : 'UI.DataField',
+    //         Value : ReasonDescription,
+    //     }
+    // }
+    
 };
-annotate service.MESInterfaces with {
-    sapReason @Common.Text : _movReasons.ReasonDescription
-};
+
+
+// annotate service.MESInterfaces with {
+//     sapReason @Common.Text : _movReasons.ReasonDescription
+
+// };
 

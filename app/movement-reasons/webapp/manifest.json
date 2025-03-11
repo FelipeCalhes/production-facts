@@ -115,6 +115,7 @@
           "name": "sap.fe.templates.ListReport",
           "options": {
             "settings": {
+              "initialLoad": "Enabled",
               "contextPath": "/MESInterfaces",
               "variantManagement": "Page",
               "navigation": {

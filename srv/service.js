@@ -100,83 +100,71 @@ module.exports = cds.service.impl(async function () {
             } else return []
         });
 
-    // this.before('READ', [Plant, MRPPlanner, MovReason], async (req) => {
-    //         const con = await cds.connect.to('searchHelp')
-    //         return con.run(req.query)
-    //     });
 
     this.on('READ', [Plant, MRPPlanner, MovReason], async (req) => {
+        //console.log('comeeeeecoooooo');
         const con = await cds.connect.to('searchHelp');
-        const userLanguage = req.user.language || 'PT'; 
-        //req.query.SELECT.columns = [{ ref: ['MovementReason'] }];
-        //req.query.SELECT.distinct = true;
-        req.query.where('Language =', userLanguage)//.distinct('MovementReason');
-        
+        const userLanguage = req.user.language || 'P'; 
+        req.query.where('Language =', userLanguage).and('MovType =', '344');
+        //console.log('reeeeeeeeequiiiiisiiiiicaaaaaooooo');
+        //console.log(req);
+        //console.log('quuuuuueeeeeeryyyyyyy');
+        //console.log(req.query);
+        //console.log('fiiiiiiiiiiiiiiiiiim');
+        return con.run(req.query);
 
-        //req.query.distinct('MovementReason');
+    });
+
+    this.on('READ', [MovReason], async (req) => {
+        const con = await cds.connect.to('searchHelp');
+        const userLanguage = req.user.language || 'P';
+        if (req.query.SELECT.search) {
+            let search = req.query.SELECT.search[0].val.replace(/"/g, '');
+            let response = await con.run(SELECT.from(MovReason).where({ MovementReason: search, Language: userLanguage, MovType: '344' }));
+            if (response.length == 0) {
+                return con.run(SELECT.from(MovReason).where({ ReasonDescription: search, Language: userLanguage, MovType: '344'  }));
+            } else {
+                return response;
+            }
+        }
+        req.query.where('Language =', userLanguage)
         return con.run(req.query);
     });
 
-        //PLANO B
-    // this.on('READ', [MovReason], async (req) => {
-    //     const con = await cds.connect.to('searchHelp')
-    //     let selectoptions = req.query.SELECT
-
-    //     let resp = await con.run(SELECT.from(MovReason))
-
-    //     function sortArray(array, orderBy) {
-    //         return array.sort((a, b) => {
-    //             for (let condition of orderBy) {
-    //                 const key = condition.ref[0]; 
-    //                 const sortOrder = condition.sort === "asc" ? 1 : -1; 
-
-    //                 if (a[key] < b[key]) return -1 * sortOrder;
-    //                 if (a[key] > b[key]) return 1 * sortOrder;
-    //             }
-    //             return 0; 
-    //         });
-    //     }
-
-    //     function filterArray(data, filters) {
-    //         let i = 0;
-          
-    //         function evaluateCondition() {
-    //           if (i >= filters.length) return true; // Default to true if no conditions          
-    //           let left = filters[i];
-    //           let operator = filters[i + 1];
-    //           let right = filters[i + 2];          
-    //           if (!left || !operator || !right) return false;         
-    //           i += 3;          
-    //           if (left.ref && right.val !== undefined) {
-    //             let key = left.ref[0];
-    //             let value = right.val;          
-    //             return (item) => {
-    //               if (operator === "=") return item[key] == value;
-    //               if (operator === "!=") return item[key] != value;
-    //               if (operator === ">") return item[key] > value;
-    //               if (operator === "<") return item[key] < value;
-    //               return false;
-    //             };
-    //           }          
-    //           return false;
-    //         }          
-    //         let conditions = [];
-    //         while (i < filters.length) {
-    //           let condition = evaluateCondition();
-    //           if (typeof filters[i] === "string" && filters[i].toLowerCase() === "and") {
-    //             i++; // Skip "and"
-    //           }
-    //           conditions.push(condition);
-    //         }          
-    //         return data.filter((item) => conditions.every((cond) => cond(item)));
-    //       }
-    //     let filtered = filterArray(resp, selectoptions.where);
-    //     let sortedResp = sortArray(filtered, selectoptions.orderBy);
-    //     return sortedResp
-
-    //     // return con.run(req.query)
-    // });
-
+    this.after('READ', [MESInterfaces, 'ProductionFactsService.MESInterfaces.drafts'], async (list, req) => {
+        const select = req.query.SELECT;
+        let con = await cds.connect.to('searchHelp');
+        if (!select.columns) return list;
+        let expandRsn = select.columns.findIndex(
+            ({ expand, ref }) => expand && ref[0] === "_movReasons"
+        );
+        let resRsn;
+        if (expandRsn > 0) {
+            let sapReason = list.map(l => l.sapReason)
+            let movTyp = '344'
+            //Languages: P (pt_br) portuguese, E (en) english, S (es) spanish
+            resRsn = con.run(SELECT.from(MovReason).where({ MovementReason: sapReason })); //, MovType: movTyp
+        } else {
+            resRsn = []
+        }
+        if (resRsn instanceof Promise) resRsn = await resRsn;
+        list.forEach(line => {
+            resRsn.find(el => {
+                let language = 'P'
+                const userLanguage = req.user.language || 'PT'; 
+                if(userLanguage == 'EN'){
+                    //console.log('comeeeeecoooooo');
+                    language = 'E'
+                } else if(userLanguage == 'ES'){
+                    language = 'S'
+                }
+                if (line.sapReason === el.MovementReason && el.MovType === '344' && el.Language === language) {
+                    line._movReasons = el
+                }
+            })
+        })
+        return list
+    });
 
     this.before('CREATE', [MESStrokes], async (list, req) => {
         if (list.data.changeReason_description == null || list.data.changeReason_description.length == 0) {

@@ -138,6 +138,13 @@ annotate srv.MovementReasons with @odata.draft.enabled {
     creditoOuDebito;
 }
 
+annotate srv.MovReason{
+    @title: '{i18n>ReasonDescription}'
+    @readonly
+    ReasonDescription;
+
+}
+
 //Net-Production
 annotate srv.NetProductions { //@readonly { //@odata.draft.enabled {
     // @title: '{i18n>Client}'
