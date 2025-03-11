@@ -145,66 +145,6 @@ module.exports = cds.service.impl(async function () {
         return con.run(req.query);
     });
  
-    //PLANO B
-    // this.on('READ', [MovReason], async (req) => {
-    //     const con = await cds.connect.to('searchHelp')
-    //     let selectoptions = req.query.SELECT
- 
-    //     let resp = await con.run(SELECT.from(MovReason))
- 
-    //     function sortArray(array, orderBy) {
-    //         return array.sort((a, b) => {
-    //             for (let condition of orderBy) {
-    //                 const key = condition.ref[0];
-    //                 const sortOrder = condition.sort === "asc" ? 1 : -1;
- 
-    //                 if (a[key] < b[key]) return -1 * sortOrder;
-    //                 if (a[key] > b[key]) return 1 * sortOrder;
-    //             }
-    //             return 0;
-    //         });
-    //     }
- 
-    //     function filterArray(data, filters) {
-    //         let i = 0;
- 
-    //         function evaluateCondition() {
-    //           if (i >= filters.length) return true; // Default to true if no conditions          
-    //           let left = filters[i];
-    //           let operator = filters[i + 1];
-    //           let right = filters[i + 2];          
-    //           if (!left || !operator || !right) return false;        
-    //           i += 3;          
-    //           if (left.ref && right.val !== undefined) {
-    //             let key = left.ref[0];
-    //             let value = right.val;          
-    //             return (item) => {
-    //               if (operator === "=") return item[key] == value;
-    //               if (operator === "!=") return item[key] != value;
-    //               if (operator === ">") return item[key] > value;
-    //               if (operator === "<") return item[key] < value;
-    //               return false;
-    //             };
-    //           }          
-    //           return false;
-    //         }          
-    //         let conditions = [];
-    //         while (i < filters.length) {
-    //           let condition = evaluateCondition();
-    //           if (typeof filters[i] === "string" && filters[i].toLowerCase() === "and") {
-    //             i++; // Skip "and"
-    //           }
-    //           conditions.push(condition);
-    //         }          
-    //         return data.filter((item) => conditions.every((cond) => cond(item)));
-    //       }
-    //     let filtered = filterArray(resp, selectoptions.where);
-    //     let sortedResp = sortArray(filtered, selectoptions.orderBy);
-    //     return sortedResp
- 
-    //     // return con.run(req.query)
-    // });
- 
  
     this.before('CREATE', [MESStrokes], async (list, req) => {
         if (list.data.changeReason_description == null || list.data.changeReason_description.length == 0) {
@@ -269,35 +209,6 @@ module.exports = cds.service.impl(async function () {
  
         return (req.data)
     })
- 
-    // this.after('READ', [MESInterfaces, 'ProductionFactsService.MESInterfaces.drafts'], async (list, req) => {
-    // const select = req.query.SELECT;
-    // let con = await cds.connect.to('searchHelp');
-    // if (!select.columns) return list;
-    // let expandMrp = select.columns.findIndex(
-    //     ({ expand, ref }) => expand && ref[0] === "_mrpController"
-    // );
-    // let resMrps;
-    // if (expandMrp != 0) {
-    //     let mrps = list.map(l => l.sapReason)
-    //     resMrps = con.run(SELECT.from(MovReason).where({ MovementReason: mrps }));
-    // } else {
-    //     resMrps = []
-    // }
- 
-    // if (resMrps instanceof Promise) resMrps = await resMrps;
- 
-    // list.forEach(line => {
-    //     resMrps.find(el => {
-    //         if (line.sapReason === el.MovementReason ) {
-    //             line._mrpController = el
-    //         }
-    //     })
-    // })
- 
-    // return list
- 
-    // });
  
     this.after('READ', [MESInterfaces, 'ProductionFactsService.MESInterfaces.drafts'], async (list, req) => {
         const select = req.query.SELECT;
