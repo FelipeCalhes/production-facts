@@ -7,7 +7,7 @@
     "applicationVersion": {
       "version": "0.0.1"
     },
-    "title": "Movement Reason x Plant Responsibility",
+    "title": "SAP Movement Reason x Plant Responsibility",
     "description": "{{appDescription}}",
     "resources": "resources.json",
     "sourceTemplate": {
@@ -30,7 +30,7 @@
         "Mov-reason-maintain": {
           "semanticObject": "movementreasons",
           "action": "maintain",
-          "title": "SAP Moviment Reason x Plant Responsibility (Production KPIs)",
+          "title": "SAP Movement Reason x Plant Responsibility (Production KPIs)",
           "signature": {
             "parameters": {},
             "additionalParameters": "allowed"
@@ -139,7 +139,7 @@
           "type": "Component",
           "id": "MESInterfacesObjectPage",
           "name": "sap.fe.templates.ObjectPage",
-          "title": "SAP Moviment Reason x Plant Responsibility (Production KPIs)",
+          "title": "SAP Movement Reason x Plant Responsibility (Production KPIs)",
           "options": {
             "settings": {
               "editableHeaderContent": false,

@@ -230,7 +230,9 @@ module.exports = cds.service.impl(async function () {
         list.forEach(line => {
             resRsn.find(el => {
                 let language = 'P'
-                const userLanguage = req.user.language || 'P'; 
+                const userLanguage = req.user.language || 'PT'; 
+                //console.log('req.user.language: ', req.user.language)
+                //console.log('userLanguage: ', userLanguage)
                 if(userLanguage == 'EN'){
                     language = 'E'
                 } else if(userLanguage == 'ES'){

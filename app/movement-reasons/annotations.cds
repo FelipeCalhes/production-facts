@@ -73,7 +73,7 @@ annotate service.MESInterfaces with @(
 
     ],
     UI.HeaderInfo : {
-        TypeName : 'Plant Responsibility Defects',
+        TypeName : 'SAP Movement Reason x Plant Responsibility',
         TypeNamePlural : '',
         Title : {
             $Type : 'UI.DataField',
