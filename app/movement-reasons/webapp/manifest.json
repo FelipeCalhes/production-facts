@@ -7,7 +7,7 @@
     "applicationVersion": {
       "version": "0.0.1"
     },
-    "title": "{{appTitle}}",
+    "title": "Movement Reason x Plant Responsibility",
     "description": "{{appDescription}}",
     "resources": "resources.json",
     "sourceTemplate": {

@@ -86,7 +86,9 @@ annotate service.MovReason with {
     MovementReason @Common.Text : {
         $value : ReasonDescription,
         ![@UI.TextArrangement] : #TextLast
-    }
+    };
+    Language @UI.HiddenFilter;
+    MovType @UI.HiddenFilter;
     // UI.LineItem : {
     //      {
     //         $Type : 'UI.DataField',
