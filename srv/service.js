@@ -244,6 +244,53 @@ module.exports = cds.service.impl(async function () {
             })
         })
         return list
+
+
+        // let result = [];
+
+        // // workaround for $search
+        // const con = await cds.connect.to('searchHelp');
+        // const qSearch = req?._?.req?.query['$search'];
+        // if (qSearch) {
+        // delete req._.req.query['$search'];
+        // const searchVal = qSearch.replaceAll('"', '');
+        // const cols = req.query.SELECT.columns.map(col => col.ref);
+        // const xprs = cols.flatMap(col => {
+        //     if (UPPERCASE_FIELDS.includes(col[0])) {
+        //     return [{func: 'contains', args: [{ref: col}, {val: searchVal.toUpperCase()}]}];
+        //     } else if (UNSEARCHABLE_FIELDS.includes(col[0])) {
+        //     return [];
+        //     } else {
+        //     return [{func: 'contains', args: [{ref: col}, {val: searchVal}]}];
+        //     }
+        // });
+        // const queries = xprs.map(whereXpr => {
+        //     return con.run(SELECT.from(req.query.SELECT.from)
+        //     .columns(req.query.SELECT.columns)
+        //     .where(whereXpr)
+        //     .orderBy(req.query.SELECT.orderBy)
+        //     .limit(req.query.SELECT.limit));
+        // });
+        // // join different value help queries, as search runs for all fields
+        // await Promise.all(queries).then((values) => {
+        //     result = values[0];
+        //     let valueHelpService = req.query.SELECT.from.ref[0];
+        //     valueHelpService = valueHelpService.substring('MainService.'.length);
+        //     const queryKey = VH_SVC_2_KEY[valueHelpService];
+        //     for (let i = 1; i < values.length; i++) {
+        //     values[i].forEach(elem => { // for each search field
+        //         if (result.find((x) => // match all keys
+        //             queryKey.every(queryKey => x[queryKey] === elem[queryKey])
+        //             ) === undefined) { // if it's new (not found)
+        //         result.push(elem); // add to result
+        //         }
+        //     });
+        //     }
+        // });
+        // } else {
+        // result = await con.run(req.query);
+        // }
+        // return result;
     });
  
     this.before('CREATE', [MESInterfaces], async (list, req) => {
